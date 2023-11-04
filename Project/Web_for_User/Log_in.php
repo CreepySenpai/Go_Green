@@ -8,6 +8,7 @@
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="./css/Sign_up_in.css" />
+    <meta charset="utf-8">
     <title>Sign in & Sign up Form</title>
   </head>
   <body>
@@ -31,13 +32,7 @@
                 <i class="fab fa-facebook-f"></i>
               </a>
               <a href="#" class="social-icon">
-                <i class="fab fa-twitter"></i>
-              </a>
-              <a href="#" class="social-icon">
                 <i class="fab fa-google"></i>
-              </a>
-              <a href="#" class="social-icon">
-                <i class="fab fa-linkedin-in"></i>
               </a>
             </div>
           </form>
@@ -62,13 +57,7 @@
                 <i class="fab fa-facebook-f"></i>
               </a>
               <a href="#" class="social-icon">
-                <i class="fab fa-twitter"></i>
-              </a>
-              <a href="#" class="social-icon">
                 <i class="fab fa-google"></i>
-              </a>
-              <a href="#" class="social-icon">
-                <i class="fab fa-linkedin-in"></i>
               </a>
             </div>
           </form>
