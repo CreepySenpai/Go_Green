@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\LoginController;
 use App\Livewire\AddProductComponent;
 use Illuminate\Support\Facades\Route;
 
@@ -18,4 +19,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/addproduct', AddProductComponent::class);
+
+//Group Route
+Route::group(['namespace' => 'Admin'], function() {
+    Route::group(['prefix' => 'login'], function() {
+        Route::get('/', [LoginController::class, 'getLogin']);
+        Route::post('/', [LoginController::class, 'postLogin']);
+    });
+});

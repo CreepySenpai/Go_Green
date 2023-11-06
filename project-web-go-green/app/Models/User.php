@@ -17,10 +17,13 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
+    protected $table = 'vp_users';
+
+
     protected $fillable = [
-        'name',
         'email',
-        'password',
+        'mat_khau',
     ];
 
     /**
@@ -29,17 +32,24 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
+        'mat_khau',
         'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-        'password' => 'hashed',
-    ];
+    // /**
+    //  * The attributes that should be cast.
+    //  *
+    //  * @var array<string, string>
+    //  */
+    // protected $casts = [
+    //     // 'email_verified_at' => 'datetime',
+    //     'mat_khau' => 'hashed',
+    // ];
+
+
+
+    // Overidde for Custom databaseFields
+    public function getAuthPassword() {
+        return $this->mat_khau;
+    }
 }
