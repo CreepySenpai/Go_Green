@@ -10,11 +10,11 @@
       href="https://fonts.googleapis.com/css?family=Roboto:400,700"
     />
     <!-- https://fonts.google.com/specimen/Open+Sans -->
-    <link rel="stylesheet" href="css/fontawesome.min.css" />
+    <link rel="stylesheet" href="{{ asset('css/fontawesome.min.css') }}" />
     <!-- https://fontawesome.com/ -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
     <!-- https://getbootstrap.com/ -->
-    <link rel="stylesheet" href="css/templatemo-style.css">
+    <link rel="stylesheet" href="{{ asset('css/templatemo-style.css') }}">
     <!--
 	Product Admin CSS Template
 	https://templatemo.com/tm-524-product-admin
@@ -125,8 +125,12 @@
                     </div>
 
                 @endif
+
+
                 <form method="post" class="tm-login-form">
                 {{csrf_field()}}
+
+                @include('errors.error')
                   <div class="form-group">
                     <label for="email">Email</label>
                     <input
@@ -134,7 +138,7 @@
                       type="email"
                       class="form-control validate"
                       id="email"
-                      value=""
+                      value="{{ old('email') }}"
                       required
                     />
                   </div>
@@ -151,7 +155,7 @@
                   </div>
                   <div class="checkbox">
                         <label style="color: rgb(240, 248, 255);">
-                            <input type="checkbox" name="remember" id="" value="Remember Me"> Nhớ Tôi
+                            <input type="checkbox" name="remember" id="" value="Remember Me"> Remember Me
                         </label>
                   </div>
                   <div class="form-group mt-4">
@@ -178,13 +182,13 @@
         <p class="text-center text-white mb-0 px-4 small">
           Copyright &copy; <b>2018</b> All rights reserved.
 
-          Design: <a rel="nofollow noopener" href="https://templatemo.com" class="tm-footer-link">Template Mo</a>
+          Design: <a rel="nofollow noopener" href="" class="tm-footer-link">Template Mo</a>
         </p>
       </div>
     </footer>
-    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
     <!-- https://jquery.com/download/ -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <!-- https://getbootstrap.com/ -->
   </body>
 </html>

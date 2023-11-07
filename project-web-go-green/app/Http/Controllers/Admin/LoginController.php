@@ -29,10 +29,10 @@ class LoginController extends Controller
         }
 
         if(Auth::attempt($loginValue, $remember)){
-            dd("Thanh Cong " . $loginValue['email'] . ' : ' . $loginValue['password'] . " : " . $nah);
+            return redirect()->intended('admin/home');
         }
         else{
-            dd("That Bai " . $loginValue['email'] . ' : ' . $loginValue['password'] . " : " . $nah);
+            return back()->withInput()->with('error', "Tài Khoản Hoặc Mật Khẩu Không Đúng!!!");
         }
     }
 }

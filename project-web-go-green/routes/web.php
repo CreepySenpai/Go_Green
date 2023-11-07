@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Livewire\AddProductComponent;
 use Illuminate\Support\Facades\Route;
@@ -20,10 +21,18 @@ Route::get('/', function () {
 });
 
 
-//Group Route
+//Group Route In Folder Admin
 Route::group(['namespace' => 'Admin'], function() {
-    Route::group(['prefix' => 'login'], function() {
+    // If user press login we check if user was logged
+    Route::group(['prefix' => 'login', 'middleware' => 'CheckLoggedIn'], function() {
         Route::get('/', [LoginController::class, 'getLogin']);
         Route::post('/', [LoginController::class, 'postLogin']);
+    });
+
+    Route::get('/logout', [HomeController::class, 'getLogout']);
+
+    // Check if guest try to go home page with out loggin
+    Route::group(['prefix' => 'admin', 'middleware' => 'CheckLoggedOut'], function(){
+        Route::get('/home', [HomeController::class, 'getHome']);
     });
 });
