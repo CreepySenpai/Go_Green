@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
 {
     public function getHome(){
-        return view('backend.index');
+        return view('Admin.backend.index');
     }
 
     public function getLogOut(){

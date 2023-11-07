@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Validator;
 class LoginController extends Controller
 {
     public function getLogin(){
-        return view('backend.login');
+        return view('Admin.backend.login');
     }
 
     public function postLogin(Request $request){
