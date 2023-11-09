@@ -4,7 +4,7 @@ use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Livewire\AddProductComponent;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\FrontController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,9 +16,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 
 //Group Route In Folder Admin
@@ -36,3 +36,6 @@ Route::group(['namespace' => 'Admin'], function() {
         Route::get('/home', [HomeController::class, 'getHome']);
     });
 });
+
+//Group Route In Folder Customer
+Route::get('/', [FrontController::class, 'index'])->name('front.shop');
