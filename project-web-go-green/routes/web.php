@@ -1,10 +1,13 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Livewire\AddProductComponent;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontController;
+use App\Models\Category;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,7 +37,19 @@ Route::group(['namespace' => 'Admin'], function() {
     // Check if guest try to go home page with out loggin
     Route::group(['prefix' => 'admin', 'middleware' => 'CheckLoggedOut'], function(){
         Route::get('/home', [HomeController::class, 'getHome']);
+
+        Route::group(['prefix' => 'category'], function(){
+            Route::get('/', [CategoryController::class, 'getCategory']);
+            Route::post('/', [CategoryController::class, 'postCategory']);
+
+            Route::get('/edit/{id}', [CategoryController::class, 'getEditCategory']);
+            Route::post('/edit/{id}', [CategoryController::class, 'postEditCategory']);
+
+            Route::get('/delete/{id}', [CategoryController::class, 'getDeleteCategory']);
+        });
     });
+
+
 });
 
 //Group Route In Folder Customer

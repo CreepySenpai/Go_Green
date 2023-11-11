@@ -939,7 +939,7 @@ input[type="checkbox"]:focus {
       background-color: #3183ac;
       display: none;
   }
-  
+
   .nav-link:hover > .dropdown,
   .dropdown-link:hover > .dropdown{
       display: block;
@@ -1003,3 +1003,4 @@ input[type="checkbox"]:focus {
       font-size: 1rem;
       transition: .7s;
   }
+}
