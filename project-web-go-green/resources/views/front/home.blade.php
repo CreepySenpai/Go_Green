@@ -536,7 +536,7 @@
 			</div>
 		</footer>
 		<!-- End Footer Section -->	
-
+		@extends('CustomerLayouts.app')
 
 		<script src="{{ asset('front-assets/js/bootstrap.bundle.min.js') }}"></script>
 		<script src="{{ asset('front-assets/js/tiny-slider.js') }}"></script>

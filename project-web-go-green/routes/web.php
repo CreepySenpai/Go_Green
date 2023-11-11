@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Customer\ShopController;
 use App\Livewire\AddProductComponent;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontController;
@@ -53,4 +54,4 @@ Route::group(['namespace' => 'Admin'], function() {
 });
 
 //Group Route In Folder Customer
-Route::get('/', [FrontController::class, 'index'])->name('front.shop');
+Route::get('/shop', [ShopController::class, 'index'])->name('front.shop');
