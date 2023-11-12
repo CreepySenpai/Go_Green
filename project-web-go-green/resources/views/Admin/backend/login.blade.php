@@ -5,20 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Login Page - Product Admin Template</title>
+
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto:400,700"
     />
-    <!-- https://fonts.google.com/specimen/Open+Sans -->
+
     <link rel="stylesheet" href="{{ asset('css/fontawesome.min.css') }}" />
-    <!-- https://fontawesome.com/ -->
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
-    <!-- https://getbootstrap.com/ -->
-    <link rel="stylesheet" href="{{ asset('css/templatemo-style.css') }}">
-    <!--
-	Product Admin CSS Template
-	https://templatemo.com/tm-524-product-admin
-	-->
+    <link rel="stylesheet" href="{{ asset('css/templatemo-style.css') }}"/>
+
   </head>
 
   <body>
@@ -62,9 +58,9 @@
                   <span> Reports <i class="fas fa-angle-down"></i> </span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">Daily Report</a>
-                  <a class="dropdown-item" href="#">Weekly Report</a>
-                  <a class="dropdown-item" href="#">Yearly Report</a>
+                  <a class="dropdown-item" href="t.html">Daily Report</a>
+                  <a class="dropdown-item" href="t.html">Weekly Report</a>
+                  <a class="dropdown-item" href="t.html">Yearly Report</a>
                 </div>
               </li>
               <li class="nav-item">
@@ -186,9 +182,8 @@
         </p>
       </div>
     </footer>
-    <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
-    <!-- https://jquery.com/download/ -->
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-    <!-- https://getbootstrap.com/ -->
+    <script src="{{ asset('js/jquery-3.3.1.min') }}"></script>
+
   </body>
 </html>
