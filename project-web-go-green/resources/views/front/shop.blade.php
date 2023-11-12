@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="author" content="Untree.co">
-  <link rel="shortcut icon" href="favicon.png">
+  <link rel="shortcut icon" href="{{ asset('front-assets/images/Logo_website.png') }}">
 
   <meta name="description" content="" />
   <meta name="keywords" content="bootstrap, bootstrap4" />
@@ -42,17 +42,17 @@
 			</div>
 		<!-- End Hero Section -->
 
-		@foreach ($product as $product)
-		<div class="untree_co-section product-section before-footer-section">
+			<div class="untree_co-section product-section before-footer-section">
 		    <div class="container">
 		      	<div class="row">
-					
+					@foreach ($products as $product)
 		      		<!-- Start Column 1 -->
 					<div class="col-12 col-md-4 col-lg-3 mb-5">
 						<a class="product-item" href="#">
-							<img src="{{ asset('front-assets/images/ong_hut_01.jpg') }}" class="img-fluid product-thumbnail">
-							<h3 class="product-title">Nordic Chair</h3>
-							<strong class="product-price">$50.00</strong>
+							<img src="{{ asset('front-assets/images/' .$product->hinh_anh) }}" class="img-fluid product-thumbnail">
+
+							<h3 class="product-title">{{$product->ten_sp}}</h3>
+							<strong class="product-price">{{$product->gia}} VND</strong>
 
 							<span class="icon-cross">
 								<img src="{{ asset('front-assets/images/cross.svg') }}" class="img-fluid">
@@ -60,11 +60,12 @@
 						</a>
 					</div> 
 					<!-- End Column 1 -->
+					@endforeach
 		      	</div>
 		    </div>
 		</div>
-		@endforeach
-
+		
+	
 		@include('front.CustomerLayouts.footer')
 
 		<script src="{{ asset('front-assets/js/bootstrap.bundle.min.js') }}"></script>

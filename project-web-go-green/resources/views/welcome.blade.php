@@ -1,1 +1,0 @@
-@extends('User.shop')
