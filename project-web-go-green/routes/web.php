@@ -3,11 +3,13 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Customer\ShopController;
 use App\Livewire\AddProductComponent;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontController;
 use App\Models\Category;
+use App\Models\Product;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +49,18 @@ Route::group(['namespace' => 'Admin'], function() {
             Route::post('/edit/{id}', [CategoryController::class, 'postEditCategory']);
 
             Route::get('/delete/{id}', [CategoryController::class, 'getDeleteCategory']);
+        });
+
+        Route::group(['prefix' => 'product'], function(){
+            Route::get('/', [ProductController::class, 'getProduct']);
+
+            Route::get('/add', [ProductController::class, 'getAddProduct']);
+            Route::post('/add', [ProductController::class, 'postAddProduct']);
+
+            Route::get('/edit/{id}', [ProductController::class, 'getEditProduct']);
+            Route::post('/edit/{id}', [ProductController::class, 'postEditProduct']);
+
+            Route::get('/delete/{id}', [ProductController::class, 'getDeleteProduct']);
         });
     });
 

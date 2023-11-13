@@ -15,15 +15,15 @@ class UserTableSeeder extends Seeder
     {
         $data = [
             [
-                'ten' => 'Nguyen Van A',
+                'user_name' => 'Nguyen Van A',
                 'email' => 'nahnah@gmail.com',
-                'mat_khau' => bcrypt('12345'),
+                'password' => bcrypt('12345'),
                 'role' => 1
             ],
             [
-                'ten' => 'Nguyen Thi B',
+                'user_name' => 'Nguyen Thi B',
                 'email' => 'thi@gmail.com',
-                'mat_khau' => bcrypt('12345'),
+                'password' => bcrypt('12345'),
                 'role' => 1
             ]
         ];

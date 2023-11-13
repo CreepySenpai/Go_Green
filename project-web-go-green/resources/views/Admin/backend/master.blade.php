@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
     <!-- https://fonts.google.com/specimen/Roboto -->
     <link rel="stylesheet" href="{{ asset('css/fontawesome.min.css') }}">
+    <link rel="stylesheet" href="jquery-ui-datepicker/jquery-ui.min.css" type="text/css" />
     <!-- https://fontawesome.com/ -->
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <!-- https://getbootstrap.com/ -->
@@ -17,6 +18,8 @@
 	Product Admin CSS Template
 	https://templatemo.com/tm-524-product-admin
 	-->
+    <script src="{{ asset('ckeditor5/ckeditor.js') }}"></script>
+    <script src="{{ asset('ckfinder/ckfinder.js') }}"></script>
 </head>
 
 <body id="reportsPage">
@@ -115,6 +118,8 @@
 
 
     <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
+
+    <script src="jquery-ui-datepicker/jquery-ui.min.js"></script>
     <!-- https://jquery.com/download/ -->
     <script src="{{ asset('js/moment.min.js') }}"></script>
     <!-- https://momentjs.com/ -->
@@ -148,6 +153,14 @@
             });
         })
     </script>
-</body>
+
+    <script>
+            ClassicEditor
+                .create( document.querySelector( '#ckeditor' ) )
+                .catch( error => {
+                    console.error( error );
+                } );
+        </script>
+    </body>
 
 </html>

@@ -19,11 +19,12 @@ class User extends Authenticatable
      */
 
     protected $table = 'vp_users';
+    protected $primaryKey = 'user_id';
 
 
     protected $fillable = [
         'email',
-        'mat_khau',
+        'password',
     ];
 
     /**
@@ -32,7 +33,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'mat_khau',
+        'password',
         'remember_token',
     ];
 
@@ -50,6 +51,6 @@ class User extends Authenticatable
 
     // Overidde for Custom databaseFields
     public function getAuthPassword() {
-        return $this->mat_khau;
+        return $this->password;
     }
 }
