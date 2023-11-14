@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
     <!-- https://fonts.google.com/specimen/Roboto -->
     <link rel="stylesheet" href="{{ asset('css/fontawesome.min.css') }}">
-    <link rel="stylesheet" href="jquery-ui-datepicker/jquery-ui.min.css" type="text/css" />
+    <link rel="stylesheet" href=" {{ asset('jquery-ui-datepicker/jquery-ui.min.css') }}" type="text/css" />
     <!-- https://fontawesome.com/ -->
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <!-- https://getbootstrap.com/ -->
@@ -19,7 +19,7 @@
 	https://templatemo.com/tm-524-product-admin
 	-->
     <script src="{{ asset('ckeditor5/ckeditor.js') }}"></script>
-    <script src="{{ asset('ckfinder/ckfinder.js') }}"></script>
+    <!-- <script src="{{ asset('ckfinder/ckfinder.js') }}"></script> -->
 </head>
 
 <body id="reportsPage">
@@ -59,16 +59,15 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="products.html">
+                            <a class="nav-link" href="{{ asset('admin/product') }}">
                                 <i class="fas fa-shopping-cart"></i>
-                                Products
+                                Sản Phẩm
                             </a>
                         </li>
-
                         <li class="nav-item">
-                            <a class="nav-link" href="accounts.html">
-                                <i class="far fa-user"></i>
-                                Accounts
+                            <a class="nav-link" href="{{ asset('admin/category') }}">
+                                <i class="far fa-list-alt"></i>
+                                Danh Mục
                             </a>
                         </li>
                         <li class="nav-item dropdown">
@@ -119,7 +118,9 @@
 
     <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
 
-    <script src="jquery-ui-datepicker/jquery-ui.min.js"></script>
+    <script src="{{ asset('js/popper.min.js') }}"></script>
+
+    <script src=" {{ asset('jquery-ui-datepicker/jquery-ui.min.js') }}"></script>
     <!-- https://jquery.com/download/ -->
     <script src="{{ asset('js/moment.min.js') }}"></script>
     <!-- https://momentjs.com/ -->
@@ -128,39 +129,5 @@
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <!-- https://getbootstrap.com/ -->
     <script src="{{ asset('js/tooplate-scripts.js') }}"></script>
-    <script>
-        Chart.defaults.global.defaultFontColor = 'white';
-        let ctxLine,
-            ctxBar,
-            ctxPie,
-            optionsLine,
-            optionsBar,
-            optionsPie,
-            configLine,
-            configBar,
-            configPie,
-            lineChart;
-        barChart, pieChart;
-        // DOM is ready
-        $(function () {
-            drawLineChart(); // Line Chart
-            drawBarChart(); // Bar Chart
-            drawPieChart(); // Pie Chart
-
-            $(window).resize(function () {
-                updateLineChart();
-                updateBarChart();
-            });
-        })
-    </script>
-
-    <script>
-            ClassicEditor
-                .create( document.querySelector( '#ckeditor' ) )
-                .catch( error => {
-                    console.error( error );
-                } );
-        </script>
-    </body>
 
 </html>

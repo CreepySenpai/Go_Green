@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AddProductRequest extends FormRequest
+class EditProductRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,15 +22,14 @@ class AddProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'image' => 'required|image'
+            'image' => 'image'
         ];
     }
 
     public function messages()
     {
-        return[
-            'image.image' => "Định Dạng Ảnh Không Chính Xác!!!",
-            'image.required' => "Cần Phải Có Hình Ảnh!!!"
+        return [
+            'image.image' => "Định Dạng Ảnh Không Hợp Lệ!!!"
         ];
     }
 }

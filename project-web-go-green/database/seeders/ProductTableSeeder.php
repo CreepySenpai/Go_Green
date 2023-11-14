@@ -20,7 +20,9 @@ class ProductTableSeeder extends Seeder
                 'product_desc' => 'Very good',
                 'product_price' => 100000,
                 'product_image' => 'a.png',
+                'product_count' => 10,
                 'product_type' => 1
+
             ],
             [
                 'product_name' => 'Hop Nhua',
@@ -28,7 +30,9 @@ class ProductTableSeeder extends Seeder
                 'product_desc' => 'Very good',
                 'product_price' => 200000,
                 'product_image' => 'b.png',
+                'product_count' => 10,
                 'product_type' => 1
+
             ]
 
         ];

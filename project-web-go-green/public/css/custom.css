@@ -1,0 +1,11 @@
+#drop-area {
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+}
+
+#image-container {
+    margin-top: 20px;
+
+}

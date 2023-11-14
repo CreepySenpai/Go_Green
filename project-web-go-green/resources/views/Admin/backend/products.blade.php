@@ -2,9 +2,9 @@
 @section('title', 'Sản Phẩm')
 @section('main')
 
-<div class="container mt-5">
+<div class="container mt-8">
       <div class="row tm-content-row">
-        <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 tm-block-col">
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 tm-block-col">
           <div class="tm-bg-primary-dark tm-block tm-block-products">
             <div class="tm-product-table-container">
               <table class="table table-hover tm-table-small tm-product-table">
@@ -20,7 +20,25 @@
                 </thead>
                 <tbody>
 
-                  <tr>
+                    @foreach($products as $product)
+                        <tr>
+                            <th scope="row"><input type="checkbox" /></th>
+                            <td class="tm-product-name">{{ $product->product_name }}</td>
+                            <td> {{ $product->product_price }}</td>
+                            <td> {{ $product->product_count }}</td>
+                            <td><img src=" {{ asset('storage' . $product->product_image) }}" alt=" Một Cái Hình"></td>
+                            <td>
+                                <a href="{{ asset('admin/product/edit/'.$product->product_id) }}" class="tm-product-delete-link">
+                                    <i class="far fa-edit tm-product-edit-icon"></i>
+                                </a>
+                                <a href="{{ asset('admin/product/delete/'.$product->product_id) }}" class="tm-product-delete-link">
+                                    <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach
+
+                  <!-- <tr>
                     <th scope="row"><input type="checkbox" /></th>
                     <td class="tm-product-name">Product 1</td>
                     <td>1,450</td>
@@ -31,7 +49,7 @@
                         <i class="far fa-trash-alt tm-product-delete-icon"></i>
                       </a>
                     </td>
-                  </tr>
+                  </tr> -->
 
                 </tbody>
               </table>
@@ -45,32 +63,7 @@
             </button>
           </div>
         </div>
-        <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 tm-block-col">
-          <div class="tm-bg-primary-dark tm-block tm-block-product-categories">
-            <h2 class="tm-block-title">Danh Mục</h2>
-            <div class="tm-product-table-container">
-              <table class="table tm-table-small tm-product-table">
-                <tbody>
 
-                  <tr>
-                    <td class="tm-product-name">Product Category 1</td>
-                    <td class="text-center">
-                      <a href="#" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                    </td>
-                  </tr>
-
-
-                </tbody>
-              </table>
-            </div>
-            <!-- table container -->
-            <button class="btn btn-primary btn-block text-uppercase mb-3">
-              Thêm Danh Mục
-            </button>
-          </div>
-        </div>
       </div>
     </div>
 

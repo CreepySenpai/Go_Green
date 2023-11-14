@@ -56,6 +56,7 @@ Route::group(['namespace' => 'Admin'], function() {
 
             Route::get('/add', [ProductController::class, 'getAddProduct']);
             Route::post('/add', [ProductController::class, 'postAddProduct']);
+            // Route::post('/add', [ProductController::class, 'testAdd']);
 
             Route::get('/edit/{id}', [ProductController::class, 'getEditProduct']);
             Route::post('/edit/{id}', [ProductController::class, 'postEditProduct']);
