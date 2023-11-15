@@ -15,13 +15,13 @@ class CategoryController extends Controller
     public function getCategory(){
         $data['categoryList'] = Category::all();
         return view('Admin.backend.category', $data);
+        return view('Admin.backend.addproduct', $data);
     }
 
     public function getEditCategory($id){
         $data['category'] = Category::find($id);
         return view('Admin.backend.editcategory', $data);
     }
-
 
 
     // Post

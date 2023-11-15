@@ -53,6 +53,8 @@ Route::group(['namespace' => 'Admin'], function() {
 
         Route::group(['prefix' => 'product'], function(){
             Route::get('/', [ProductController::class, 'getProduct']);
+            Route::get('/', [CategoryController::class, 'getCategory']);
+
 
             Route::get('/add', [ProductController::class, 'getAddProduct']);
             Route::post('/add', [ProductController::class, 'postAddProduct']);
@@ -68,4 +70,9 @@ Route::group(['namespace' => 'Admin'], function() {
 });
 
 //Group Route In Folder Customer
-Route::get('/shop', [ShopController::class, 'index'])->name('front.shop');
+Route::group(['namespace' => 'Customer'], function() {
+    //show data in shop page
+    Route::get('/shop', [ShopController::class, 'showProducts'])->name('shop');
+    Route::get('/shop', [ShopController::class, 'showCategorys'])->name('shop');
+
+});

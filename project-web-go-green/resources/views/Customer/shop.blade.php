@@ -19,7 +19,7 @@
 		
 	<body>
 
-		@include('front.CustomerLayouts.header')
+		@include('Customer.CustomerLayouts.header')
 
 		<!-- Start Hero Section -->
 			<div class="hero">
@@ -33,8 +33,11 @@
 						<div class="col-lg-7">
 							<div class="intro-excerpt">
 								<p>
-									<a href="#" class="btn btn-white-outline">Ống hút</a>
-									<a href="#" class="btn btn-white-outline">Cốc giấy mang đi</a>
+									<a href="#" class="btn btn-white-outline">
+										@foreach ($categorys as $categorys)
+											{{ $categorys->cate_name }}
+										@endforeach
+									</a>
 							</div>
 						</div>
 					</div>
@@ -49,10 +52,10 @@
 		      		<!-- Start Column 1 -->
 					<div class="col-12 col-md-4 col-lg-3 mb-5">
 						<a class="product-item" href="#">
-							<img src="{{ asset('front-assets/images/' .$product->hinh_anh) }}" class="img-fluid product-thumbnail">
+							<img src="{{ asset('front-assets/images/' .$product->product_image) }}" class="img-fluid product-thumbnail">
 
-							<h3 class="product-title">{{$product->ten_sp}}</h3>
-							<strong class="product-price">{{$product->gia}} VND</strong>
+							<h3 class="product-title">{{ $product->product_name }}</h3>
+							<strong class="product-price">{{ $product->product_price }} VND</strong>
 
 							<span class="icon-cross">
 								<img src="{{ asset('front-assets/images/cross.svg') }}" class="img-fluid">
@@ -66,7 +69,7 @@
 		</div>
 		
 	
-		@include('front.CustomerLayouts.footer')
+		@include('Customer.CustomerLayouts.footer')
 
 		<script src="{{ asset('front-assets/js/bootstrap.bundle.min.js') }}"></script>
 		<script src="{{ asset('front-assets/js/tiny-slider.js') }}"></script>

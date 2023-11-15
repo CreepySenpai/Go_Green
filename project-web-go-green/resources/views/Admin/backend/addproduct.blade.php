@@ -59,13 +59,10 @@
                                     class="custom-select tm-select-accounts"
                                     id="category" name="category"
                                     >
-                                    <option selected>Select category</option>
-                                    <option value="1">New Arrival</option>
-                                    <option value="2">Most Popular</option>
-                                    <option value="3">Trending</option>
+                                    <option selected>Select category</option> 
+                                    <option value=""> {{$data->cate_name}} </option>
                                     </select>
                                 </div>
-
                                 <!-- <div class="row">
                                     <div class="form-group mb-3 col-xs-12 col-sm-6">
                                         <label

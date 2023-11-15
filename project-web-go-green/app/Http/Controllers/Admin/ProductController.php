@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Requests\AddProductRequest;
+use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
@@ -17,6 +18,7 @@ class ProductController extends Controller
     //Get
     public function getProduct(){
         $data['products'] = Product::all();
+        $data['cate'] = Category::all();
         return view('Admin.backend.products', $data);
     }
 
@@ -44,6 +46,9 @@ class ProductController extends Controller
         $product->product_image = $path;
         $product->product_price = $request->price;
 
+        $product ->save();
+
+        return back();
     }
 
     public function postEditProduct(){
