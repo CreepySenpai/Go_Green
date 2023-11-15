@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('product_name');
             $table->string('product_slug');
             $table->integer('product_price');
+            $table->integer('product_count');
             $table->text('product_desc');
             $table->string('product_image');
             $table->integer('product_type')->unsigned();

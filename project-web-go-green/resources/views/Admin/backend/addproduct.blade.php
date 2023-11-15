@@ -2,9 +2,11 @@
 @section('title', 'Thêm Sản Phẩm')
 @section('main')
 
+
+    <link rel="stylesheet" href="{{ asset('css/custom.css'); }}">
     <div class="container tm-mt-big tm-mb-big">
         <div class="row">
-            <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mx-auto">
                 <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
                     <div class="row">
                         <div class="col-12">
@@ -12,7 +14,7 @@
                         </div>
                     </div>
                     <div class="row tm-edit-product-row">
-                        <div class="col-xl-6 col-lg-6 col-md-12">
+                        <div class="col-xl-12 col-lg-12 col-md-12">
                             @include('errors.error')
                             <form method="post" class="tm-edit-product-form" enctype="multipart/form-data">
 
@@ -37,18 +39,10 @@
                                     <textarea
                                     id="ckeditor"
                                     class="form-control validate"
-                                    rows="5"
+                                    rows="10"
                                     name="description"
                                     ></textarea>
-                                    <!-- <script>
-                                        var editor = CKEDITOR.replace('description', {
-                                            language: 'vi',
-                                            filebrowserImageBrowseUrl: '../../../ckfinder/ckfinder.html?Type=Images',
-                                            filebrowserFlashBrowseUrl: '../../../ckfinder/ckfinder.html?Type=Flash',
-                                            filebrowserImageUploadUrl: '../../../ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
-                                            filebrowserFlashUploadUrl: '../../../ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
-                                        });
-                                    </script> -->
+
                                 </div>
                                 <div class="form-group mb-3">
                                     <label
@@ -59,12 +53,21 @@
                                     class="custom-select tm-select-accounts"
                                     id="category" name="category"
                                     >
-                                    <option selected>Select category</option> 
-                                    <option value=""> {{$data->cate_name}} </option>
-                                    </select>
-                                </div>
                                 <!-- <div class="row">
                                     <div class="form-group mb-3 col-xs-12 col-sm-6">
+                                    <option selected>Chọn Danh Mục</option>
+
+                                        @foreach($categoryList as $category)
+
+                                        <option value="{{ $category->cate_id; }}"> {{ $category->cate_name }}</option>
+
+                                        @endforeach
+
+                                    </select>
+                                </div>
+
+                                <div class="row">
+                                    <!-- <div class="form-group mb-3 col-xs-12 col-sm-6">
                                         <label
                                             for="expire_date"
                                             >Expire Date
@@ -76,47 +79,50 @@
                                             class="form-control validate"
                                             data-large-mode="true"
                                         />
-                                        </div>
+                                        </div> -->
                                         <div class="form-group mb-3 col-xs-12 col-sm-6">
                                         <label
                                             for="stock"
-                                            >Units In Stock
+                                            >Số Lượng
                                         </label>
                                         <input
                                             id="stock"
-                                            name="stock"
-                                            type="text"
+                                            name="count"
+                                            type="number"
                                             class="form-control validate"
                                             required
                                         />
+
                                         </div>
 
-                                </div> -->
-                                <!-- <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
-                                    <div class="tm-product-img-dummy mx-auto">
-                                    <i
-                                        class="fas fa-cloud-upload-alt tm-upload-icon"
-                                        onclick="document.getElementById('fileInput').click();"
-                                    ></i>
-                                    </div>
-                                    <div class="custom-file mt-3 mb-3">
-                                    <input id="fileInput" type="file" style="display:none;" />
-                                    <input
-                                        type="button"
-                                        class="btn btn-primary btn-block mx-auto"
-                                        value="UPLOAD PRODUCT IMAGE"
-                                        onclick="document.getElementById('fileInput').click();"
-                                        name="image"
-                                    />
-                                    </div>
-                                </div> -->
+                                        <div class="form-group mb-3 col-xs-12 col-sm-6">
+                                        <label
+                                            for="stock"
+                                            >Giá
+                                        </label>
+                                        <input
+                                            id="stock"
+                                            name="price"
+                                            type="number"
+                                            class="form-control validate"
+                                            required
+                                        />
 
-                                <div class="form-group mb-3">
-                                    <label
-                                    for="image"
-                                    >Hình Ảnh
-                                    </label>
-                                    <input type="file" name="image" id="image">
+                                        </div>
+
+                                </div>
+
+                                <label for="">Thêm Hình Ảnh</label>
+                                <div class="container">
+
+                                    <br>
+                                    <div id="drop-area">
+                                        <h3>Drag & Drop Images Here</h3>
+                                        <p>or</p>
+                                        <input type="file" name="image" id="fileInput" multiple>
+                                    </div>
+
+                                    <div id="image-container" class="row"></div>
                                 </div>
 
                                 <div class="col-12">
@@ -137,5 +143,17 @@
         $("#expire_date").datepicker();
       });
     </script> -->
+
+        <script>
+            ClassicEditor
+                .create( document.querySelector( '#ckeditor' ) )
+                .catch( error => {
+                    console.error( error );
+                } );
+        </script>
+
+        <script src="{{ asset('js/draganddropimage.js') }}"></script>
+
+    </body>
 
 @stop

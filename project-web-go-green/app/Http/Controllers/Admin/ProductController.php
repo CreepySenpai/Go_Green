@@ -6,12 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Requests\AddProductRequest;
+use App\Http\Requests\EditProductRequest;
 use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
-
-use function Livewire\store;
 
 class ProductController extends Controller
 {
@@ -23,39 +22,81 @@ class ProductController extends Controller
     }
 
     public function getAddProduct(){
-        return view('Admin.backend.addproduct');
+        $data['categoryList'] = Category::all();
+        return view('Admin.backend.addproduct', $data);
     }
 
-    public function getEditProduct(){
-
-        return view('Admin.backend.editproduct');
+    public function getEditProduct($id){
+        $data['categoryList'] = Category::all();
+        $data['product'] = Product::find($id);
+        return view('Admin.backend.editproduct', $data);
     }
+
+    // public function testAdd(Request $request){
+    //     $path = Storage::putFile('public/images/product', $request->file('image'));
+    //     echo $path;
+    // }
 
     //Post
     public function postAddProduct(AddProductRequest $request){
-        echo "$request->name";
-        echo "$request->description";
-        echo "$request->category";
+        $path = Storage::putFile('public/images/product', $request->file('image'));
 
-        $path = Storage::putFile('images/product', $request->file('image'));
+        $str = explode('/', $path);
+
+        $realPath = '';
+
+        foreach($str as $item){
+            if($item == 'public'){
+                continue;
+            }
+            $realPath .= '/' . $item;
+        }
 
         $product = new Product();
         $product->product_name = $request->name;
         $product->product_slug = Str::slug($request->name);
         $product->product_desc = $request->description;
-        $product->product_image = $path;
+        $product->product_image = $realPath;
         $product->product_price = $request->price;
-
-        $product ->save();
+        $product->product_count = $request->count;
+        $product->product_type = $request->category;
+        $product->save();
 
         return back();
     }
 
-    public function postEditProduct(){
+    public function postEditProduct(EditProductRequest $request, $id){
+        $product = new Product();
+        $data['product_name'] = $request->name;
+        $data['product_slug'] = Str::slug($request->name);
+        $data['product_desc'] = $request->description;
+        $data['product_type'] = $request->category;
+        $data['product_count'] = $request->count;
+        $data['product_price'] = $request->price;
 
+        if($request->file('image')){
+            $path = Storage::putFile('public/images/product', $request->file('image'));
+
+            $str = explode('/', $path);
+
+            $realPath = '';
+
+            foreach($str as $item){
+                if($item == 'public'){
+                    continue;
+                }
+                $realPath .= '/' . $item;
+            }
+
+            $data['product_image'] = $realPath;
+        }
+
+        $product::where('product_id', $id)->update($data);
+        return redirect('admin/product');
     }
 
-    public function getDeleteProduct(){
-
+    public function getDeleteProduct($id){
+        Product::destroy($id);
+        return redirect('admin/product');
     }
 }

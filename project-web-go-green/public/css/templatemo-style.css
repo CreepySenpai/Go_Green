@@ -374,7 +374,7 @@ thead {
   color: #a0c0de;
 }
 .tm-bg-primary-dark {
-  background-color: #435c70;
+  background-color: #548ebe;
 }
 .tm-bg-gray {
   background-color: rgba(0, 0, 0, 0.05);
@@ -446,6 +446,11 @@ input[type="checkbox"]:focus {
 .tm-product-name {
   font-size: 0.95rem;
   font-weight: 600;
+}
+
+.tm-product-edit-icon{
+    font-size: 1.1rem;
+    color:  #bc321a;
 }
 .tm-product-delete-icon {
   font-size: 1.1rem;

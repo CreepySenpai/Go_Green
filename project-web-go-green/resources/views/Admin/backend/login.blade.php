@@ -15,9 +15,55 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/templatemo-style.css') }}"/>
 
+    <style>
+    .form-check-label {
+      cursor: pointer;
+    }
+
+    .animated-checkbox {
+      position: relative;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .animated-checkbox input[type="checkbox"] {
+      opacity: 0;
+      position: absolute;
+    }
+
+    .animated-checkbox span {
+      position: relative;
+      display: inline-block;
+      width: 30px;
+      height: 15px;
+      border-radius: 15px;
+      background-color: #ccc;
+      transition: background-color 0.3s;
+    }
+
+    .animated-checkbox span:after {
+      content: '';
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background-color: #fff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s;
+    }
+
+    .animated-checkbox input[type="checkbox"]:checked + span {
+      background-color: #4CAF50;
+    }
+
+    .animated-checkbox input[type="checkbox"]:checked + span:after {
+      transform: translateX(15px);
+    }
+  </style>
   </head>
 
   <body>
+
     <div>
       <nav class="navbar navbar-expand-xl">
         <div class="container h-100">
@@ -149,11 +195,18 @@
                       required
                     />
                   </div>
-                  <div class="checkbox">
+                  <div class="form-group form-check">
+                    <label class="form-check-label animated-checkbox" for="rememberMe">
+                        <input type="checkbox" class="form-check-input" id="rememberMe" value="Remember Me">
+                        <span></span>
+                        Remember Me
+                    </label>
+                    </div>
+                  <!-- <div class="checkbox">
                         <label style="color: rgb(240, 248, 255);">
                             <input type="checkbox" name="remember" id="" value="Remember Me"> Remember Me
                         </label>
-                  </div>
+                  </div> -->
                   <div class="form-group mt-4">
                     <button
                       type="submit"
@@ -182,8 +235,33 @@
         </p>
       </div>
     </footer>
+    <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('js/jquery-3.3.1.min') }}"></script>
 
+    <script>
+        Chart.defaults.global.defaultFontColor = 'white';
+        let ctxLine,
+            ctxBar,
+            ctxPie,
+            optionsLine,
+            optionsBar,
+            optionsPie,
+            configLine,
+            configBar,
+            configPie,
+            lineChart;
+        barChart, pieChart;
+        // DOM is ready
+        $(function () {
+            drawLineChart(); // Line Chart
+            drawBarChart(); // Bar Chart
+            drawPieChart(); // Pie Chart
+
+            $(window).resize(function () {
+                updateLineChart();
+                updateBarChart();
+            });
+        })
+    </script>
   </body>
 </html>
