@@ -33,11 +33,9 @@
 						<div class="col-lg-7">
 							<div class="intro-excerpt">
 								<p>
-									<a href="#" class="btn btn-white-outline">
-										@foreach ($categorys as $categorys)
-											{{ $categorys->cate_name }}
-										@endforeach
-									</a>
+									@foreach ($cate as $category)
+									<a href="#" class="btn btn-white-outline">{{ $category->cate_name }}</a>
+									@endforeach
 							</div>
 						</div>
 					</div>

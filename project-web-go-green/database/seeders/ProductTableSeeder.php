@@ -15,21 +15,21 @@ class ProductTableSeeder extends Seeder
     {
         $data = [
             [
-                'product_name' => 'Hop Thuong',
-                'product_slug' => 'hop-thuong',
+                'product_name' => 'Ống hút cỏ bàng (Grass straws) ',
+                'product_slug' => 'ong-hut',
                 'product_desc' => 'Very good',
                 'product_price' => 100000,
-                'product_image' => 'a.png',
+                'product_image' => 'ong_hut_01.jpg',
                 'product_count' => 10,
                 'product_type' => 1
 
             ],
             [
-                'product_name' => 'Hop Nhua',
-                'product_slug' => 'hop-nhua',
+                'product_name' => 'Ống Hút Tinh Bột Gạo',
+                'product_slug' => 'ong-hut',
                 'product_desc' => 'Very good',
                 'product_price' => 200000,
-                'product_image' => 'b.png',
+                'product_image' => 'ong_hut_02.jpg',
                 'product_count' => 10,
                 'product_type' => 1
 

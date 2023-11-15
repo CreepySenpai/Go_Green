@@ -10,14 +10,9 @@ use Illuminate\Http\Request;
 
 class ShopController extends Controller
 {
-    public function showProducts() {
-        $products = Product::all();
-        return view('Customer.shop', ['products'=>$products]);
+    public function getProduct(){
+        $data['products'] = Product::all();
+        $data['cate'] = Category::all();
+        return view('Customer.shop', $data);
     }
-
-    public function showCategorys() {
-        $categorys = Category::all();
-        return view('Customer.shop', ['categorys'=>$categorys]);
-    }
-
 }
