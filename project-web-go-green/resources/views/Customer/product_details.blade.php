@@ -22,7 +22,7 @@
 		@include('Customer.CustomerLayouts.header')
 
 		<!-- Start Hero Section -->
-			<div class="hero">
+			{{-- <div class="hero">
 				<div class="container">
 					<div class="row justify-content-between">
 						<div class="col-lg-5">
@@ -40,34 +40,35 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> --}}
 		<!-- End Hero Section -->
 
-			<div class="untree_co-section product-section before-footer-section">
-		    <div class="container">
-		      	<div class="row">
-					@foreach ($products as $product)
-		      		<!-- Start Column 1 -->
-					<div class="col-12 col-md-4 col-lg-3 mb-5">
-						<a class="product-item" href="{{url('product_details',$product->product_slug)}}">
-							<img src="{{ asset('front-assets/images/' .$product->product_image) }}" class="img-fluid product-thumbnail">
+        
+		<!-- Start We Help Section -->
+		<div class="we-help-section">
+			<div class="container">
+				<div class="row justify-content-between">
+					<div class="col-lg-7 mb-5 mb-lg-0">
+						<div class="imgs-grid">
+							<div class="grid grid-2"><img src="{{ asset('front-assets/images/' .$product->product_image) }}" alt="" width="500px" height="500px"></div>
+						</div>
+					</div>
+					<div class="col-lg-5 ps-lg-5">
+						<h2 class="section-title mb-4">{{$product->product_name}}</h2>
+						<p>{{$product->product_desc}}</p>
 
-							<h3 class="product-title">{{ $product->product_name }}</h3>
-							<strong class="product-price">{{ $product->product_price }} VND</strong>
-
-							<span class="icon-cross">
-								<img src="{{ asset('front-assets/images/cross.svg') }}" class="img-fluid">
-							</span>
-						</a>
-					</div> 
-					<!-- End Column 1 -->
-					@endforeach
-					 <!-- Pagination Links -->
-					 {{ $products->withQueryString()->links('pagination::bootstrap-5') }}
-		      	</div>
-		    </div>
+						<ul class="list-unstyled custom-list my-4">
+							<li>Giao hàng nhanh</li>
+							<li>Thân thiện với môi trường</li>
+							<li>Giá cả hợp lý</li>
+							<li>Chung tay vì trái đất xanh</li>
+						</ul>
+						<p><a herf="#" class="btn">Thêm vào giỏ hàng</a><a herf="#" class="btn">Mua hàng</a></p>
+					</div>
+				</div>
+			</div>
 		</div>
-		
+		<!-- End We Help Section -->
 	
 		@include('Customer.CustomerLayouts.footer')
 

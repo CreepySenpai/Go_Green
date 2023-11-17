@@ -16,14 +16,14 @@ class CategoriesTableSeeder extends Seeder
     {
         $data = [
             [
-                "cate_name" => "Hop Giay",
+                "cate_name" => "Hộp giấy",
                 "cate_slug" => Str::slug('Hop Giay', '-'),
                 "cate_des" => "Bao gom cac loai hop giay"
             ],
             [
-                "cate_name" => "Hop Nhua",
-                "cate_slug" => Str::slug('Hop Nhua', '-'),
-                "cate_des" => "Bao gom cac loai hop nhua"
+                "cate_name" => "Ống hút",
+                "cate_slug" => Str::slug('Ong hut', '-'),
+                "cate_des" => "Bao gom cac loai ong hut"
             ]
         ];
 

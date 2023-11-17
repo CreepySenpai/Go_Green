@@ -10,9 +10,15 @@ use Illuminate\Http\Request;
 
 class ShopController extends Controller
 {
-    public function getProduct(){
-        $data['products'] = Product::all();
+    public function getData(){
+        $data['products'] = Product::paginate(8);
         $data['cate'] = Category::all();
         return view('Customer.shop', $data);
+        return view('Customer.product_details', $data);
+    }
+
+    public function product_details($product_slug) {
+        $product = Product::where('product_slug', $product_slug)->firstOrFail();
+        return view('Customer.product_details', compact('product'));
     }
 }

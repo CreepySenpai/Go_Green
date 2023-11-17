@@ -2,7 +2,7 @@
 		<nav class="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Furni navigation bar">
 
 			<div class="container">
-				<a class="navbar-brand" href="index.html">Go<span>!</span>Green</a>
+				<a class="navbar-brand" href="{{ url('shop') }}">Go<span>!</span>Green</a>
 
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni" aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
@@ -13,7 +13,7 @@
 						{{-- <li class="nav-item ">
 							<a class="nav-link" href="index.html">Home</a>
 						</li> --}}
-						<li class="active"><a class="nav-link" href="shop.html">Shop</a>
+						<li class="active"><a class="nav-link" href="{{ url('shop') }}">Shop</a>
 							
 						</li>
 						{{-- <li><a class="nav-link" href="about.html">About us</a></li>

@@ -3,8 +3,8 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\LoginController;
-use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Customer\ShopController;
+use App\Http\Controllers\Customer\ProductDetailsController;
 use App\Livewire\AddProductComponent;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontController;
@@ -74,6 +74,7 @@ Route::group(['namespace' => 'Admin'], function() {
 Route::group(['namespace' => 'Customer'], function() {
     //show data in shop page
     Route::group(['prefix' => 'shop'], function(){
-        Route::get('/', [ShopController::class, 'getProduct']);
+        Route::get('/', [ShopController::class, 'getData']);;
     });
+    Route::get('/product_details/{product_slug}', [ShopController::class, 'product_details']);
 });
