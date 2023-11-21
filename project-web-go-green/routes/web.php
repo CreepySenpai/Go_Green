@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontController;
 use App\Models\Category;
 use App\Models\Product;
+use App\Http\Controllers\Admin\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,7 +39,7 @@ Route::group(['namespace' => 'Admin'], function() {
     Route::get('/logout', [HomeController::class, 'getLogout']);
 
     // Check if guest try to go home page with out loggin
-    Route::group(['prefix' => 'admin', 'middleware' => 'CheckLoggedOut'], function(){
+    Route::group(['prefix' => 'admin', 'middleware' => ['CheckLoggedOut', 'AdminLoggin']], function(){
         Route::get('/home', [HomeController::class, 'getHome']);
 
         Route::group(['prefix' => 'category'], function(){
@@ -53,7 +54,6 @@ Route::group(['namespace' => 'Admin'], function() {
 
         Route::group(['prefix' => 'product'], function(){
             Route::get('/', [ProductController::class, 'getProduct']);
-            Route::get('/', [CategoryController::class, 'getCategory']);
 
 
             Route::get('/add', [ProductController::class, 'getAddProduct']);

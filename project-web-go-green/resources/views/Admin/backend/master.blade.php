@@ -108,7 +108,7 @@
                 <p class="text-center text-white mb-0 px-4 small">
                     Copyright &copy; <b>2018</b> All rights reserved.
 
-                    Design: <a rel="nofollow noopener" href="#" class="tm-footer-link">Template Mo</a>
+                    Design: <a rel="nofollow noopener" href="#" class="tm-footer-link">OniChan</a>
                 </p>
             </div>
         </footer>
@@ -121,13 +121,13 @@
     <script src="{{ asset('js/popper.min.js') }}"></script>
 
     <script src=" {{ asset('jquery-ui-datepicker/jquery-ui.min.js') }}"></script>
-    <!-- https://jquery.com/download/ -->
+
     <script src="{{ asset('js/moment.min.js') }}"></script>
-    <!-- https://momentjs.com/ -->
+
     <script src="{{ asset('js/Chart.min.js') }}"></script>
-    <!-- http://www.chartjs.org/docs/latest/ -->
+
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-    <!-- https://getbootstrap.com/ -->
+
     <script src="{{ asset('js/tooplate-scripts.js') }}"></script>
 
 </html>
