@@ -57,12 +57,12 @@
 						<h2 class="section-title mb-4">{{$product->product_name}}</h2>
 						<p>{{$product->product_desc}}</p>
 
-						<ul class="list-unstyled custom-list my-4">
+						{{-- <ul class="list-unstyled custom-list my-4">
 							<li>Giao hàng nhanh</li>
 							<li>Thân thiện với môi trường</li>
 							<li>Giá cả hợp lý</li>
 							<li>Chung tay vì trái đất xanh</li>
-						</ul>
+						</ul> --}}
 						<p><a herf="#" class="btn">Thêm vào giỏ hàng</a><a herf="#" class="btn">Mua hàng</a></p>
 					</div>
 				</div>
