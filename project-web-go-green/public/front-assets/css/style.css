@@ -336,7 +336,7 @@ a {
     .we-help-section .imgs-grid .grid {
       position: relative; }
       .we-help-section .imgs-grid .grid img {
-        border-radius: 20px;
+        border-radius: 10px;
         max-width: 100%; }
       .we-help-section .imgs-grid .grid.grid-1 {
         -ms-grid-column: 1;
