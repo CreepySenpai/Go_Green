@@ -6,8 +6,9 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
+use Termwind\Components\Dd;
 
-class CheckLogedIn
+class AdminLoggin
 {
     /**
      * Handle an incoming request.
@@ -16,9 +17,12 @@ class CheckLogedIn
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // If admin was loggin
+        // Prevent User Try To Go Admin Page
+        // Check If User Was Loggin and Role Id
         if(Auth::check()){
-            return redirect()->intended('admin/home');
+            if(Auth::user()->role == 0){
+                return redirect('/shop/');
+            }
         }
         return $next($request);
     }

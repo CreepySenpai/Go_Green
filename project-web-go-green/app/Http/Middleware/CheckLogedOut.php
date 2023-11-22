@@ -16,6 +16,7 @@ class CheckLogedOut
      */
     public function handle(Request $request, Closure $next): Response
     {
+        // Prevent Guest Try To Go Admin Page
         if(Auth::guest()){
             return redirect()->intended('login');
         }
