@@ -10,7 +10,7 @@ class SignInUp extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function login()
     {
         return view('Customer.sign_in_up');
     }
@@ -18,7 +18,7 @@ class SignInUp extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create_acc_customers()
+    public function register()
     {
         
     }

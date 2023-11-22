@@ -78,5 +78,5 @@ Route::group(['namespace' => 'Customer'], function() {
         Route::get('/', [ShopController::class, 'getData']);;
     });
     Route::get('/product_details/{product_slug}', [ShopController::class, 'product_details']);
-    Route::get('/sign_in_up', [SignInUp::class, 'index']);
+    Route::get('/sign_in_up', [SignInUp::class, 'login']);
 });

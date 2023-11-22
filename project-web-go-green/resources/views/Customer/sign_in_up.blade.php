@@ -20,12 +20,12 @@
                     <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
                     <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
                 </div>
-                <form action="" method="post">
+                <form action="" method="post" name="registrationForm" id="registrationForm">
                     <input type="text" placeholder="Họ và tên">
                     <input type="email" placeholder="Email">
                     <input type="password" placeholder="Nhập mật khẩu">
                     <input type="password" placeholder="Nhập lại mật khẩu">
-                    <button>Đăng ký</button>
+                    <button type="submit">Đăng ký</button>
                 </form>
                 <a href="{{ url('shop') }}">Quay lại Shop</a>
             </form>

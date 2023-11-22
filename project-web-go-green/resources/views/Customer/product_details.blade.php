@@ -63,7 +63,7 @@
 							<li>Giá cả hợp lý</li>
 							<li>Chung tay vì trái đất xanh</li>
 						</ul> --}}
-						<p><a herf="#" class="btn">Thêm vào giỏ hàng</a><a herf="#" class="btn">Mua hàng</a></p>
+						<p><a herf="#" class="btn">Thêm vào giỏ hàng</a></p>
 					</div>
 				</div>
 			</div>
