@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontController;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\cus_account;
 use App\Http\Controllers\Admin\ProductController;
 
 /*
@@ -78,5 +79,11 @@ Route::group(['namespace' => 'Customer'], function() {
         Route::get('/', [ShopController::class, 'getData']);;
     });
     Route::get('/product_details/{product_slug}', [ShopController::class, 'product_details']);
-    Route::get('/sign_in_up', [SignInUp::class, 'login']);
+
+
+    route::get('/CusLogin', [SignInUp::class, 'login'])->name('CusLogin');
+    Route::post('/postCusLogin', [SignInUp::class, 'postCusLogin'])->name('postCusLogin');
+    //register
+    route::get('/CusRegister', [SignInUp::class, 'register'])->name('CusRegister');
+    Route::post('/postCusRegister', [SignInUp::class, 'postCusRegister'])->name('postCusRegister');
 });

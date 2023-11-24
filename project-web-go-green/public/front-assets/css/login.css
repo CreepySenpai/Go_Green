@@ -60,6 +60,10 @@ body{
     cursor: pointer;
 }
 
+.container button a{
+    color: #fff;
+}
+
 .container button.hidden{
     background-color: transparent;
     border-color: #fff;

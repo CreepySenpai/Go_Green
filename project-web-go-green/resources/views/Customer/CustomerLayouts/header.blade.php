@@ -23,7 +23,7 @@
 					</ul>
 
 					<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
-						<li><a class="nav-link" href="{{ url('sign_in_up') }}"><img src="{{ asset('front-assets/images/user.svg') }}"></a></li>
+						<li><a class="nav-link" href="{{ url('CusLogin') }}"><img src="{{ asset('front-assets/images/user.svg') }}"></a></li>
 						<li><a class="nav-link" href="cart.html"><img src="{{ asset('front-assets/images/cart.svg') }}"></a></li>
 					</ul>
 				</div>
