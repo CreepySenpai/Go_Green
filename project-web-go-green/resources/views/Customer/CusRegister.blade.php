@@ -14,7 +14,7 @@
     <div class="container" id="container">
 
         <div class="form-container sign-up">
-            <form action="{{ url('postCusRegister') }}" method="post" name="registrationForm" id="registrationForm">
+            <form action="{{ route('CusRegister.post') }}" method="post" name="registrationForm" id="registrationForm">
                 @csrf
                 <h1>Tạo tài khoản</h1>
                 <div class="social-icons">
@@ -22,7 +22,7 @@
                     <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
                 </div>
                 <input type="text" placeholder="Họ và tên" name="name" id="name">
-                @if ($errors->has('email'))
+                @if ($errors->has('name'))
                     <span class= "text-danger" style="color: #FF3030">{{$errors->first('name')}}</span>
                 @endif
                 <input type="email" placeholder="Email" name="email" id="email">

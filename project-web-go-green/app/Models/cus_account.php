@@ -8,12 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\Authenticatable;
 
-class cus_account extends Model
+class cus_account extends Model implements Authenticatable
 {
     use HasFactory, Notifiable, AuthenticatableTrait;
 
+    protected $table = 'cus_accounts';
+
     protected $fillable = [
-        'name', 'email', 'password',
+        'cus_name', 'cus_email', 'cus_password',
     ];
 
     protected $hidden = [

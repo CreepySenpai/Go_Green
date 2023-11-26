@@ -76,14 +76,14 @@ Route::group(['namespace' => 'Admin'], function() {
 Route::group(['namespace' => 'Customer'], function() {
     //show data in shop page
     Route::group(['prefix' => 'shop'], function(){
-        Route::get('/', [ShopController::class, 'getData']);;
+        Route::get('/', [ShopController::class, 'getData'])->name(name: 'shop');;
     });
     Route::get('/product_details/{product_slug}', [ShopController::class, 'product_details']);
 
 
-    route::get('/CusLogin', [SignInUp::class, 'login'])->name('CusLogin');
-    Route::post('/postCusLogin', [SignInUp::class, 'postCusLogin'])->name('postCusLogin');
+    route::get('/CusLogin', [SignInUp::class, 'login'])->name(name: 'CusLogin');
+    Route::post('/CusLogin', [SignInUp::class, 'postCusLogin'])->name(name: 'CusLogin.post');
     //register
-    route::get('/CusRegister', [SignInUp::class, 'register'])->name('CusRegister');
-    Route::post('/postCusRegister', [SignInUp::class, 'postCusRegister'])->name('postCusRegister');
+    route::get('/CusRegister', [SignInUp::class, 'register'])->name(name: 'CusRegister');
+    Route::post('/CusRegister', [SignInUp::class, 'postCusRegister'])->name(name: 'CusRegister.post');
 });

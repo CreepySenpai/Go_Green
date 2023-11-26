@@ -15,7 +15,7 @@
 		<link href="{{ asset('front-assets/css/tiny-slider.css') }}" rel="stylesheet">
 		<link href="{{ asset('front-assets/css/style.css') }}" rel="stylesheet">
 		<title>Go!Green Online Shop</title>
-	</head>
+</head>
 		
 	<body>
 
@@ -27,7 +27,7 @@
 					<div class="row justify-content-between">
 						<div class="col-lg-5">
 							<div class="intro-excerpt">
-								<h1>Shop</h1>
+								<h1>Shop, xin chào {{ $info_user->cus_name }}</h1>
 							</div>
 						</div>
 						<div class="col-lg-7">

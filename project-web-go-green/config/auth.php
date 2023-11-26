@@ -40,6 +40,11 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+        'cus_account' => [
+            'driver' => 'session',
+            'provider' => 'cus_accounts',
+        ],
     ],
 
     /*
@@ -69,6 +74,11 @@ return [
         //     'driver' => 'database',
         //     'table' => 'vp_users',
         // ],
+        'cus_accounts' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\cus_account::class,
+        ],
+   
     ],
 
     /*

@@ -12,7 +12,7 @@
 <body>
     <div class="container" id="container">
         <div class="form-container sign-in">
-            <form action="{{ route('postCusLogin') }}" method="post" name="loginForm" id="loginForm">
+            <form action="{{ route('CusLogin.post') }}" method="post" name="loginForm" id="loginForm">
                 @csrf
           
                 <h1>Đăng nhập</h1>
@@ -21,16 +21,19 @@
                     <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
                 </div>
                 <span>hoặc sử dụng email và mật khẩu đã đăng ký</span>
+                @if(session('ReSuccess'))
+                    <span class= "text-danger" style="color: #3b5d50; font-weight: 700;">{{ session('ReSuccess') }}</span>
+                @endif
                 <input type="email" placeholder="Email" name="email" id="loginEmail">
                 @if(session('error'))
-                    <span class= "text-danger" style="color: #FF3030">{{ session('error') }}</span>
+                    <span class= "text-danger" style="color: #FF3030;">{{ session('error') }}</span>
                 @endif
                 @if ($errors->has('email'))
-                    <span class= "text-danger" style="color: #FF3030">{{$errors->first('email')}}</span>
+                    <span class= "text-danger" style="color: #FF3030;">{{$errors->first('email')}}</span>
                 @endif
                 <input type="password" placeholder="Nhập mật khẩu" name="password" id="loginPassword">
                 @if ($errors->has('password'))
-                    <span class= "text-danger" style="color: #FF3030">{{$errors->first('password')}}</span>
+                    <span class= "text-danger" style="color: #FF3030;">{{$errors->first('password')}}</span>
                 @endif
                 <a href="#">Quên mật khẩu</a>
                 <button type="submit">Đăng nhập</button>
