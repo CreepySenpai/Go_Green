@@ -18,8 +18,6 @@
 	Product Admin CSS Template
 	https://templatemo.com/tm-524-product-admin
 	-->
-    <script src="{{ asset('ckeditor5/ckeditor.js') }}"></script>
-    <!-- <script src="{{ asset('ckfinder/ckfinder.js') }}"></script> -->
 </head>
 
 <body id="reportsPage">
@@ -37,7 +35,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mx-auto h-100">
                         <li class="nav-item">
-                            <a class="nav-link active" href="{{ asset('admin/home') }}">
+                            <a class="nav-link" href="{{ asset('admin/home') }}">
                                 <i class="fas fa-tachometer-alt"></i>
                                 Dashboard
                                 <span class="sr-only">(current)</span>

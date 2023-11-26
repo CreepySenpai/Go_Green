@@ -91,8 +91,8 @@
                         <p class="card-text"><strong>Price:</strong> ${{ $product->product_price }}</p>
                         <p class="card-text"><strong>Quantity:</strong>${{ $product->product_count }}</p>
                         <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-info">Edit</button>
-                            <button type="button" class="btn btn-danger">Delete</button>
+                            <a href="{{ asset('admin/product/edit/'.$product->product_id) }}" class="btn btn-info">Edit</a>
+                            <a href="{{ asset('admin/product/delete/'.$product->product_id) }}" class="btn btn-danger">Delete</a>
                         </div>
                     </div>
                 </div>
