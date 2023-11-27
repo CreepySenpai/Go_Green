@@ -37,10 +37,9 @@
                                     >Mô Tả</label
                                     >
                                     <textarea
-                                    id="ckeditor"
                                     class="form-control validate"
                                     rows="10"
-                                    name="description"
+                                    name="description" required
                                     ></textarea>
 
                                 </div>
@@ -137,20 +136,6 @@
             </div>
         </div>
     </div>
-
-    <!-- <script>
-      $(function() {
-        $("#expire_date").datepicker();
-      });
-    </script> -->
-
-        <script>
-            ClassicEditor
-                .create( document.querySelector( '#ckeditor' ) )
-                .catch( error => {
-                    console.error( error );
-                } );
-        </script>
 
         <script src="{{ asset('js/draganddropimage.js') }}"></script>
 
