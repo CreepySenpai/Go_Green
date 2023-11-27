@@ -16,7 +16,7 @@ class ProductTableSeeder extends Seeder
         $data = [
             [
                 'product_name' => 'Ống hút cỏ bàng (Grass straws) ',
-                'product_slug' => 'Ong-Hut-co',
+                'product_slug' => 'ong-hut',
                 'product_desc' => 'Very good',
                 'product_price' => 100000,
                 'product_image' => 'ong_hut_01.jpg',
@@ -26,7 +26,7 @@ class ProductTableSeeder extends Seeder
             ],
             [
                 'product_name' => 'Ống Hút Tinh Bột Gạo',
-                'product_slug' => 'Ong-Hut',
+                'product_slug' => 'ong-hut',
                 'product_desc' => 'Very good',
                 'product_price' => 200000,
                 'product_image' => 'ong_hut_02.jpg',
@@ -36,7 +36,7 @@ class ProductTableSeeder extends Seeder
             ],
             [
                 'product_name' => '50 Cốc giấy ly giấy dùng 1 lần 260ml-9oz',
-                'product_slug' => 'Coc-giay',
+                'product_slug' => 'coc-giay',
                 'product_desc' => 'Very good',
                 'product_price' => 200000,
                 'product_image' => 'cocgiay.jpg',
@@ -46,7 +46,7 @@ class ProductTableSeeder extends Seeder
             ],
             [
                 'product_name' => 'SET 10 HỘP TRÒN GIẤY KRAFT/ TRE 750ML',
-                'product_slug' => 'hop-giay-kraft',
+                'product_slug' => 'hop-giay',
                 'product_desc' => 'Very good',
                 'product_price' => 200000,
                 'product_image' => 'kraft.jpg',
@@ -56,7 +56,7 @@ class ProductTableSeeder extends Seeder
             ],
             [
                 'product_name' => 'SET 10 HỘP TRÒN GIẤY KRAFT/ TRE 750ML',
-                'product_slug' => 'hop-giay-kraft',
+                'product_slug' => 'hop-giay',
                 'product_desc' => 'Very good',
                 'product_price' => 400000,
                 'product_image' => 'kraft.jpg',
@@ -66,7 +66,7 @@ class ProductTableSeeder extends Seeder
             ],
             [
                 'product_name' => '50 cái hộp giấy 3 ngăn, hộp giấy 4 ngăn',
-                'product_slug' => 'hop-giay-4-ngan',
+                'product_slug' => 'hop-giay',
                 'product_desc' => 'Very good',
                 'product_price' => 200000,
                 'product_image' => 'hopgiaybonngan.jpg',
@@ -76,7 +76,7 @@ class ProductTableSeeder extends Seeder
             ],
             [
                 'product_name' => '50 cái hộp giấy 3 ngăn, hộp giấy 4 ngăn',
-                'product_slug' => 'hop-giay-4-ngan',
+                'product_slug' => 'hop-giay',
                 'product_desc' => 'Very good',
                 'product_price' => 200000,
                 'product_image' => 'hopgiaybonngan.jpg',
@@ -86,7 +86,7 @@ class ProductTableSeeder extends Seeder
             ],
             [
                 'product_name' => '50 Cốc giấy ly giấy dùng 1 lần 260ml-9oz',
-                'product_slug' => 'Coc-giay',
+                'product_slug' => 'coc-giay',
                 'product_desc' => 'Very good',
                 'product_price' => 200000,
                 'product_image' => 'cocgiay.jpg',
@@ -96,7 +96,7 @@ class ProductTableSeeder extends Seeder
             ],
             [
                 'product_name' => '50 Cốc giấy ly giấy dùng 1 lần 260ml-9oz',
-                'product_slug' => 'Coc-giay',
+                'product_slug' => 'coc-giay',
                 'product_desc' => 'Very good',
                 'product_price' => 200000,
                 'product_image' => 'cocgiay.jpg',
