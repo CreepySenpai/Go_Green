@@ -80,10 +80,11 @@ Route::group(['namespace' => 'Customer'], function() {
     });
     Route::get('/product_details/{product_slug}', [ShopController::class, 'product_details']);
 
-
-    route::get('/CusLogin', [SignInUp::class, 'login'])->name(name: 'CusLogin');
+    //Login and logout
+    Route::get('/CusLogin', [SignInUp::class, 'login'])->name(name: 'CusLogin')->middleware('alreadyLoggedIn');
     Route::post('/CusLogin', [SignInUp::class, 'postCusLogin'])->name(name: 'CusLogin.post');
+    Route::get('/logout', [SignInUp::class, 'Logout']);
     //register
-    route::get('/CusRegister', [SignInUp::class, 'register'])->name(name: 'CusRegister');
+    Route::get('/CusRegister', [SignInUp::class, 'register'])->name(name: 'CusRegister')->middleware('alreadyLoggedIn');
     Route::post('/CusRegister', [SignInUp::class, 'postCusRegister'])->name(name: 'CusRegister.post');
 });

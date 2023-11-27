@@ -88,9 +88,10 @@ class SignInUp extends Controller
     }
 
     function Logout() {
-        Session::flush();
-        Auth::logout();
-        return redirect('/CusLogin');
+        if (Session::has('LoginID')) {
+            Session::pull('LoginID');
+            return redirect(route(name:'shop'));
+        }
     }
 }
  

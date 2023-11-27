@@ -27,15 +27,21 @@
 					<div class="row justify-content-between">
 						<div class="col-lg-5">
 							<div class="intro-excerpt">
-								<h1>Shop, xin chào {{ $info_user->cus_name }}</h1>
+								<h1>
+									Shop, xin chào 
+									@if(session('LoginID'))
+										{{ $info_user->cus_name }}
+									@endif
+								</h1>
 							</div>
 						</div>
 						<div class="col-lg-7">
 							<div class="intro-excerpt">
-								<p>
-									@foreach ($cate as $category)
+								@foreach ($cate as $category)
 									<a href="#" class="btn btn-white-outline">{{ $category->cate_name }}</a>
-									@endforeach
+								@endforeach
+							    <!-- Pagination Links -->
+								{{-- {{ $cate->links('pagination::bootstrap-5') }} --}}
 							</div>
 						</div>
 					</div>

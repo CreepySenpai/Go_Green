@@ -30,6 +30,18 @@ class ShopController extends Controller
         // return view('Customer.shop', compact('info_user'));
     }
 
+    public function children()
+    {
+        return $this->hasMany(Category::class, 'parent_id');
+    }
+
+    public function yourView()
+    {
+        $topLevelCategories = Category::whereNull('parent_id')->get();
+
+        return view('Customer.CustomerLayouts.header', ['cate' => $topLevelCategories]);
+    }
+
     public function product_details($product_slug) {
         $product = Product::where('product_slug', $product_slug)->firstOrFail();
         return view('Customer.product_details', compact('product'));

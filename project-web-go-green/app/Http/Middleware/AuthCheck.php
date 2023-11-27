@@ -5,9 +5,9 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Illuminate\Support\Facades\Auth;
 
-class CheckCusLogin
+
+class AuthCheck
 {
     /**
      * Handle an incoming request.
@@ -16,11 +16,9 @@ class CheckCusLogin
      */
     public function handle(Request $request, Closure $next): Response
     {
-             // Kiểm tra xem người dùng đã đăng nhập chưa
-             if (Auth::check()) {
-                return redirect(route(name:'shop'));
-            }
-    
-            return $next($request);
+        if(!Session()->has('LoginID')) {
+            return redirect(route(name: 'CusLogin'));
+        }
+        return $next($request);
     }
 }
