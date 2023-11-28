@@ -37,8 +37,8 @@ class ShopController extends Controller
         // Find the category by slug
         $category = Category::where('cate_slug', $cate_slug)->firstOrFail();
 
-        // Get products belonging to the category
-        $products = Product::where('product_type', $category->cate_id)->get();
+     // Get products belonging to the category
+     $products = Product::where('product_type', $category->cate_id)->paginate(2);
 
         // Pass data to the view
         return view('Customer.shoplist', $data ,compact('products', 'category'));
