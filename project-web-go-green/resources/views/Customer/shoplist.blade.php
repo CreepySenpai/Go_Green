@@ -40,8 +40,7 @@
 								@foreach ($cate as $category)
 									<a href="{{url('shoplist',$category->cate_slug)}}" class="btn btn-white-outline">{{ $category->cate_name }}</a>
 								@endforeach
-							    <!-- Pagination Links -->
-								{{-- {{ $cate->links('pagination::bootstrap-5') }} --}}
+                                
 							</div>
 						</div>
 					</div>
@@ -52,6 +51,7 @@
 			<div class="untree_co-section product-section before-footer-section">
 		    <div class="container">
 		      	<div class="row">
+                    {{-- <h1>Danh sách sản phẩm: {{ $category->cate_name }}</h1> --}}
 					@foreach ($products as $product)
 		      		<!-- Start Column 1 -->
 					<div class="col-12 col-md-4 col-lg-3 mb-5">
@@ -69,7 +69,7 @@
 					<!-- End Column 1 -->
 					@endforeach
 					 <!-- Pagination Links -->
-					 {{ $products->withQueryString()->links('pagination::bootstrap-5') }}
+					 {{-- {{ $products->withQueryString()->links('pagination::bootstrap-5') }} --}}
 		      	</div>
 		    </div>
 		</div>

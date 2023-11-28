@@ -78,7 +78,12 @@ Route::group(['namespace' => 'Customer'], function() {
     Route::group(['prefix' => 'shop'], function(){
         Route::get('/', [ShopController::class, 'getData'])->name(name: 'shop');;
     });
-    Route::get('/product_details/{product_slug}', [ShopController::class, 'product_details']);
+
+    //product_list
+    Route::get('/shoplist/{cate_slug}', [ShopController::class, 'filterByCategory']);
+
+    //product_details
+    Route::get('/product_details/{product_id}', [ShopController::class, 'product_details']);
 
     //Login and logout
     Route::get('/CusLogin', [SignInUp::class, 'login'])->name(name: 'CusLogin')->middleware('alreadyLoggedIn');

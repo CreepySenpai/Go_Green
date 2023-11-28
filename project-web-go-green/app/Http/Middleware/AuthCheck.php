@@ -17,7 +17,7 @@ class AuthCheck
     public function handle(Request $request, Closure $next): Response
     {
         if(!Session()->has('LoginID')) {
-            return redirect(route(name: 'CusLogin'));
+            return redirect(route(name: 'CusLogin'))->with('error', 'Bạn phải đăng nhập trước');
         }
         return $next($request);
     }

@@ -41,7 +41,7 @@ class ProductTableSeeder extends Seeder
                 'product_price' => 200000,
                 'product_image' => 'cocgiay.jpg',
                 'product_count' => 10,
-                'product_type' => 4
+                'product_type' => 8
 
             ],
             [
@@ -51,7 +51,7 @@ class ProductTableSeeder extends Seeder
                 'product_price' => 200000,
                 'product_image' => 'kraft.jpg',
                 'product_count' => 10,
-                'product_type' => 4
+                'product_type' => 3
 
             ],
             [
@@ -61,7 +61,7 @@ class ProductTableSeeder extends Seeder
                 'product_price' => 400000,
                 'product_image' => 'kraft.jpg',
                 'product_count' => 10,
-                'product_type' => 4
+                'product_type' => 3
 
             ],
             [
@@ -71,7 +71,7 @@ class ProductTableSeeder extends Seeder
                 'product_price' => 200000,
                 'product_image' => 'hopgiaybonngan.jpg',
                 'product_count' => 10,
-                'product_type' => 4
+                'product_type' => 3
 
             ],
             [
@@ -81,7 +81,7 @@ class ProductTableSeeder extends Seeder
                 'product_price' => 200000,
                 'product_image' => 'hopgiaybonngan.jpg',
                 'product_count' => 10,
-                'product_type' => 4
+                'product_type' => 3
 
             ],
             [
@@ -91,7 +91,7 @@ class ProductTableSeeder extends Seeder
                 'product_price' => 200000,
                 'product_image' => 'cocgiay.jpg',
                 'product_count' => 10,
-                'product_type' => 4
+                'product_type' => 8
 
             ],
             [

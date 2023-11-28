@@ -50,7 +50,7 @@
 				<div class="row justify-content-between">
 					<div class="col-lg-7 mb-5 mb-lg-0">
 						<div class="imgs-grid">
-							<div class="grid grid-2"><img src="{{ asset('front-assets/images/' .$product->product_image) }}" alt="" width="500px" height="500px"></div>
+							<div class="grid grid-2"><img src="{{ asset('front-assets/images/' .$product->product_image) }}" alt="" width="600px" height="600px"></div>
 						</div>
 					</div>
 					<div class="col-lg-5 ps-lg-5">

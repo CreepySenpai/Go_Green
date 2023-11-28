@@ -18,6 +18,7 @@ class ShopController extends Controller
     public function getData(){
         $data['products'] = Product::paginate(8);
         $data['cate'] = Category::all();
+
         $info_user = array();
         if (Session::has('LoginID')) {
             # code...
@@ -30,20 +31,21 @@ class ShopController extends Controller
         // return view('Customer.shop', compact('info_user'));
     }
 
-    public function children()
+    public function filterByCategory($cate_slug)
     {
-        return $this->hasMany(Category::class, 'parent_id');
+        $data['cate'] = Category::all();
+        // Find the category by slug
+        $category = Category::where('cate_slug', $cate_slug)->firstOrFail();
+
+        // Get products belonging to the category
+        $products = Product::where('product_type', $category->cate_id)->get();
+
+        // Pass data to the view
+        return view('Customer.shoplist', $data ,compact('products', 'category'));
     }
 
-    public function yourView()
-    {
-        $topLevelCategories = Category::whereNull('parent_id')->get();
-
-        return view('Customer.CustomerLayouts.header', ['cate' => $topLevelCategories]);
-    }
-
-    public function product_details($product_slug) {
-        $product = Product::where('product_slug', $product_slug)->firstOrFail();
+    public function product_details($product_id) {
+        $product = Product::where('product_id', $product_id)->firstOrFail();
         return view('Customer.product_details', compact('product'));
     }
 }
