@@ -50,7 +50,7 @@
 				<div class="row justify-content-between">
 					<div class="col-lg-7 mb-5 mb-lg-0">
 						<div class="imgs-grid">
-							<div class="grid grid-2"><img src="{{ asset('front-assets/images/' .$product->product_image) }}" alt="" width="600px" height="600px"></div>
+							<div class="grid grid-2"><img src="{{ asset('storage/' .$product->product_image) }}" alt="" width="600px" height="600px"></div>
 						</div>
 					</div>
 					<div class="col-lg-5 ps-lg-5">
@@ -63,7 +63,11 @@
 							<li>Giá cả hợp lý</li>
 							<li>Chung tay vì trái đất xanh</li>
 						</ul> --}}
-						<p><a herf="#" class="btn">Thêm vào giỏ hàng</a></p>
+						<form action="{{ url('Cart', $product->product_id) }}" method="post">
+							@csrf
+							<input type="submit" class="btn" value="Thêm vào giỏ hàng">
+						</form>
+						{{-- <p><a herf="{{ url('Cart') }}" class="btn">Thêm vào giỏ hàng</a></p> --}}
 					</div>
 				</div>
 			</div>

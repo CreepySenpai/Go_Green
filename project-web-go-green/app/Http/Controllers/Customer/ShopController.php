@@ -27,7 +27,6 @@ class ShopController extends Controller
         }
 
         return view('Customer.shop', $data, compact('info_user'));
-        return view('Customer.product_details', $data);
         // return view('Customer.shop', compact('info_user'));
     }
 

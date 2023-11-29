@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Customer\ShopController;
 use App\Http\Controllers\Customer\SignInUp;
 use App\Http\Controllers\Customer\ProductDetailsController;
+use App\Http\Controllers\Customer\AddtoCart;
 use App\Livewire\AddProductComponent;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontController;
@@ -79,17 +80,21 @@ Route::group(['namespace' => 'Customer'], function() {
         Route::get('/', [ShopController::class, 'getData'])->name(name: 'shop');;
     });
 
-    //product_list
+    //product_list route
     Route::get('/shoplist/{cate_slug}', [ShopController::class, 'filterByCategory']);
 
-    //product_details
+    //product_details route
     Route::get('/product_details/{product_id}', [ShopController::class, 'product_details']);
 
-    //Login and logout
+    //Login and logout route
     Route::get('/CusLogin', [SignInUp::class, 'login'])->name(name: 'CusLogin')->middleware('alreadyLoggedIn');
     Route::post('/CusLogin', [SignInUp::class, 'postCusLogin'])->name(name: 'CusLogin.post');
     Route::get('/logout', [SignInUp::class, 'Logout']);
     //register
     Route::get('/CusRegister', [SignInUp::class, 'register'])->name(name: 'CusRegister')->middleware('alreadyLoggedIn');
     Route::post('/CusRegister', [SignInUp::class, 'postCusRegister'])->name(name: 'CusRegister.post');
+
+    //Add to Cart route
+    Route::get('/Cart', [AddtoCart::class, 'showPage'])->middleware('isLoggedIn')->name(name: 'cart'); 
+    Route::post('/Cart/{product_id}', [AddtoCart::class, 'add_temp_cart'])->name(name: 'temp_cart.post')->middleware('isLoggedIn');
 });

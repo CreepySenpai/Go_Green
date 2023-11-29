@@ -25,7 +25,7 @@
 						@else
 							<li><a class="nav-link" href="{{ url('CusLogin') }}"><img src="{{ asset('front-assets/images/user.svg') }}"></a></li>
 						@endif
-						<li><a class="nav-link" href="cart.html"><img src="{{ asset('front-assets/images/cart.svg') }}"></a></li>
+						<li><a class="nav-link" href="{{ url('Cart') }}"><img src="{{ asset('front-assets/images/cart.svg') }}"></a></li>
 					</ul>
 				</div>
 			</div>
