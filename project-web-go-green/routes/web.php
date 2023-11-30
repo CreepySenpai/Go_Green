@@ -97,4 +97,5 @@ Route::group(['namespace' => 'Customer'], function() {
     //Add to Cart route
     Route::get('/Cart', [AddtoCart::class, 'showPage'])->middleware('isLoggedIn')->name(name: 'cart'); 
     Route::post('/Cart/{product_id}', [AddtoCart::class, 'add_temp_cart'])->name(name: 'temp_cart.post')->middleware('isLoggedIn');
+    Route::get('/remove_cart/{id}', [AddtoCart::class, 'Remove_temp_cart']);
 });

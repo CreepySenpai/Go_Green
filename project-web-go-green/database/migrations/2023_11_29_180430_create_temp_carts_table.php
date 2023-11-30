@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('temp_carts', function (Blueprint $table) {
+            $table->id();
             $table->string('product_title')->nullable();
             $table->string('price')->nullable();
             $table->string('image')->nullable();

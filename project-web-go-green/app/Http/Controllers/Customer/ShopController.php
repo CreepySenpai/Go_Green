@@ -35,12 +35,12 @@ class ShopController extends Controller
         $data['cate'] = Category::all();
         // Find the category by slug
         $category = Category::where('cate_slug', $cate_slug)->firstOrFail();
-
-     // Get products belonging to the category
-     $products = Product::where('product_type', $category->cate_id)->paginate(2);
+        $info_user = cus_account::where('id', '=', Session::get('LoginID'))->first();
+        // Get products belonging to the category
+        $products = Product::where('product_type', $category->cate_id)->paginate(2);
 
         // Pass data to the view
-        return view('Customer.shoplist', $data ,compact('products', 'category'));
+        return view('Customer.shoplist', $data ,compact('products', 'category', 'info_user'));
     }
 
     public function product_details($product_id) {
