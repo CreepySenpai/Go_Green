@@ -43,7 +43,8 @@
 		<div class="untree_co-section before-footer-section">
             <div class="container">
               <div class="row mb-5">
-                <form class="col-md-12" method="post">
+                <form class="col-md-12" method="post" action="{{ url('update-cart') }}"> 
+                  @csrf
                   <div class="site-blocks-table">
                     <table class="table">
                       @if ($temp_cart->isEmpty() || $temp_cart->first()->customer_id === null)
@@ -61,7 +62,9 @@
                         </tr>
                       </thead>
                       <tbody>
+                        <?php $totalcart=0; ?>
                         @foreach ($temp_cart as $temp_cart)
+                        <?php $totalcart=$totalcart+$temp_cart->total_price; ?>
                         <tr>
                           <td class="product-thumbnail">
                             <img src="{{ asset('storage/' .$temp_cart->image) }}" alt="Image" class="img-fluid">
@@ -69,18 +72,17 @@
                           <td class="product-name">
                             <h2 class="h5 text-black">{{ $temp_cart->product_title }}</h2>
                           </td>
-                          <td>{{$temp_cart->	price}}</td>
+                          <td>{{$temp_cart->price}}</td>
                           <td>
                             <div class="input-group mb-3 d-flex align-items-center quantity-container" style="max-width: 120px;">
                               <div class="input-group-prepend">
                                 <button class="btn btn-outline-black decrease" type="button">&minus;</button>
                               </div>
-                              <input type="text" class="form-control text-center quantity-amount" value="1" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1" name="quantity">
+                              <input type="text" name="new_quantity" class="form-control text-center quantity-amount" value="{{$temp_cart->temp_quantity}}" min="1" aria-label="Example text with button addon" aria-describedby="button-addon1">
                               <div class="input-group-append">
                                 <button class="btn btn-outline-black increase" type="button">&plus;</button>
                               </div>
                             </div>
-        
                           </td>
                           <td>
                                 {{-- Check if product count exists for the current product ID --}}
@@ -90,30 +92,30 @@
                                   0
                                 @endif  
                           </td>
-                          <td>2112</td>
+                          <td>{{ $temp_cart->total_price }}</td>
                           <td><a href="{{ url('remove_cart', $temp_cart->id) }}" class="btn btn-black btn-sm" onclick="return confirm('Bạn có muốn xóa sản phẩm ?')">X</a></td>
                         </tr>
                         @endforeach
                       </tbody>
-                      @endif
                     </table>
                   </div>
-                </form>
+                  @endif
               </div>
-              
               <div class="row">
                 <div class="col-md-6">
                   <div class="row mb-5">
                     <div class="col-md-6 mb-3 mb-md-0">
-                      <button class="btn btn-black btn-sm btn-block">Cập nhật</button>
+                     <input type="submit" value="Cập nhật giỏ hàng" class="btn btn-black btn-sm btn-block">
                     </div>
                   </div>
+          </form>
                   <div class="row">
                     <div class="col-md-12"></div>
                     <div class="col-md-8 mb-3 mb-md-0"></div>
                     <div class="col-md-4"></div>
                   </div>
                 </div>
+               
                 <div class="col-md-6 pl-5">
                   <div class="row justify-content-end">
                     <div class="col-md-7">
@@ -135,13 +137,12 @@
                           <span class="text-black">Tổng tiền</span>
                         </div>
                         <div class="col-md-6 text-right">
-                          <strong class="text-black">$230.00</strong>
+                          <strong class="text-black">{{ $totalcart }}</strong>
                         </div>
                       </div>
-        
                       <div class="row">
                         <div class="col-md-12">
-                          <button class="btn btn-black btn-lg py-3 btn-block" onclick="window.location='checkout.html'">Kiểm tra thông tin</button>
+                          <a href="{{ url('checkout') }}" class="btn btn-black btn-lg py-3 btn-block">Kiểm tra thông tin</a>
                         </div>
                       </div>
                     </div>
@@ -150,7 +151,8 @@
               </div>
             </div>
           </div>
-
+      
+   
 		@include('Customer.CustomerLayouts.footer')
 
 		<script src="{{ asset('front-assets/js/bootstrap.bundle.min.js') }}"></script>

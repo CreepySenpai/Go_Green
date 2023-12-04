@@ -14,8 +14,10 @@ return new class extends Migration
         Schema::create('temp_carts', function (Blueprint $table) {
             $table->id();
             $table->string('product_title')->nullable();
-            $table->string('price')->nullable();
+            $table->integer('price')->nullable();
             $table->string('image')->nullable();
+            $table->integer('temp_quantity')->nullable();
+            $table->integer('total_price')->nullable();
             $table->string('product_id')->nullable();
             $table->string('customer_id')->nullable();
             $table->timestamps();
