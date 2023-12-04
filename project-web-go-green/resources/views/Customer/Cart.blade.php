@@ -41,6 +41,7 @@
 		
 
 		<div class="untree_co-section before-footer-section">
+      <?php $totalcart=0; ?>
             <div class="container">
               <div class="row mb-5">
                 <form class="col-md-12" method="post" action="{{ url('update-cart') }}"> 
@@ -62,9 +63,7 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <?php $totalcart=0; ?>
                         @foreach ($temp_cart as $temp_cart)
-                        <?php $totalcart=$totalcart+$temp_cart->total_price; ?>
                         <tr>
                           <td class="product-thumbnail">
                             <img src="{{ asset('storage/' .$temp_cart->image) }}" alt="Image" class="img-fluid">
@@ -95,17 +94,23 @@
                           <td>{{ $temp_cart->total_price }}</td>
                           <td><a href="{{ url('remove_cart', $temp_cart->id) }}" class="btn btn-black btn-sm" onclick="return confirm('Bạn có muốn xóa sản phẩm ?')">X</a></td>
                         </tr>
+                        <?php $totalcart=$totalcart+$temp_cart->total_price; ?>
                         @endforeach
                       </tbody>
+                      @endif
                     </table>
+                    @if(session('error'))
+                      <span class= "text-danger" style="color: #FF3030;">{{ session('error') }}</span>
+                    @endif
                   </div>
-                  @endif
               </div>
               <div class="row">
                 <div class="col-md-6">
                   <div class="row mb-5">
                     <div class="col-md-6 mb-3 mb-md-0">
+                    @if ($totalcart !== 0)
                      <input type="submit" value="Cập nhật giỏ hàng" class="btn btn-black btn-sm btn-block">
+                    @endif
                     </div>
                   </div>
           </form>
@@ -142,7 +147,9 @@
                       </div>
                       <div class="row">
                         <div class="col-md-12">
-                          <a href="{{ url('checkout') }}" class="btn btn-black btn-lg py-3 btn-block">Kiểm tra thông tin</a>
+                          @if ($totalcart !== 0)
+                            <a href="{{ url('checkout') }}" class="btn btn-black btn-lg py-3 btn-block">Kiểm tra thông tin</a>
+                          @endif
                         </div>
                       </div>
                     </div>
