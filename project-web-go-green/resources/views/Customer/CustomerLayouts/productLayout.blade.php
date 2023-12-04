@@ -5,7 +5,7 @@
 							<div class="col-lg-5">
 								<div class="intro-excerpt">
 									<h1>
-										Shop, xin chào 
+										Xin chào<br>
 										@if(session('LoginID'))
 											{{ $info_user->cus_name }}
 										@endif
