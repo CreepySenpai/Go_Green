@@ -26,6 +26,7 @@
 							<li><a class="nav-link" href="{{ url('CusLogin') }}"><img src="{{ asset('front-assets/images/user.svg') }}"></a></li>
 						@endif
 						<li><a class="nav-link" href="{{ url('Cart') }}"><img src="{{ asset('front-assets/images/cart.svg') }}"></a></li>
+						<li><a class="nav-link" href=""><img src="{{ asset('front-assets/images/icons8-shipped-32.png') }}"></a></li>
 					</ul>
 				</div>
 			</div>
