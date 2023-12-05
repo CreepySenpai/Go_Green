@@ -74,7 +74,7 @@
                         <li class="nav-item">
                             <div class="d-flex align-items-center">
                                 <span class="mr-2 text-white font-weight-bold">Xin Chào {{ Auth::user()->user_name }}</span>
-                                <a class="nav-link" href="{{ asset('logout') }}">
+                                <a class="nav-link" href="{{ asset('/admin/logout') }}">
                                     <i class="fas fa-sign-out-alt fa-xs text-white"></i>
                                 </a>
                             </div>

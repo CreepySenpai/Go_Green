@@ -39,7 +39,7 @@ Route::group(['namespace' => 'Admin'], function() {
         Route::post('/', [LoginController::class, 'postLogin']);
     });
 
-    Route::get('/logout', [HomeController::class, 'getLogout']);
+    Route::get('/admin/logout', [HomeController::class, 'getLogout']);
 
     // Check if guest try to go home page with out loggin
     Route::group(['prefix' => 'admin', 'middleware' => ['CheckLoggedOut', 'AdminLoggin']], function(){
@@ -61,7 +61,6 @@ Route::group(['namespace' => 'Admin'], function() {
 
             Route::get('/add', [ProductController::class, 'getAddProduct']);
             Route::post('/add', [ProductController::class, 'postAddProduct']);
-            // Route::post('/add', [ProductController::class, 'testAdd']);
 
             Route::get('/edit/{id}', [ProductController::class, 'getEditProduct']);
             Route::post('/edit/{id}', [ProductController::class, 'postEditProduct']);
@@ -95,7 +94,7 @@ Route::group(['namespace' => 'Customer'], function() {
     Route::post('/CusRegister', [SignInUp::class, 'postCusRegister'])->name(name: 'CusRegister.post');
 
     //Add to Cart route
-    Route::get('/Cart', [AddtoCart::class, 'showPage'])->middleware('isLoggedIn')->name(name: 'cart'); 
+    Route::get('/Cart', [AddtoCart::class, 'showPage'])->middleware('isLoggedIn')->name(name: 'cart');
     Route::post('/Cart/{product_id}', [AddtoCart::class, 'add_temp_cart'])->name(name: 'temp_cart.post')->middleware('isLoggedIn');
     Route::get('/remove_cart/{id}', [AddtoCart::class, 'Remove_temp_cart']);
     Route::post('/update-cart', [AddtoCart::class, 'update_temp_cart'])->name(name: 'update-cart.post');
