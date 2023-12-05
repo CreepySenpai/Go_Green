@@ -65,6 +65,7 @@
 						</ul> --}}
 						<form action="{{ url('Cart', $product->product_id) }}" method="post">
 							@csrf
+							{{-- <input type="number" name="quantiny" value="1" min="1"> --}}
 							<input type="submit" class="btn" value="Thêm vào giỏ hàng">
 						</form>
 						{{-- <p><a herf="{{ url('Cart') }}" class="btn">Thêm vào giỏ hàng</a></p> --}}

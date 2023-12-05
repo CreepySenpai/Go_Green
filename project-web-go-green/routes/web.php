@@ -98,4 +98,8 @@ Route::group(['namespace' => 'Customer'], function() {
     Route::get('/Cart', [AddtoCart::class, 'showPage'])->middleware('isLoggedIn')->name(name: 'cart'); 
     Route::post('/Cart/{product_id}', [AddtoCart::class, 'add_temp_cart'])->name(name: 'temp_cart.post')->middleware('isLoggedIn');
     Route::get('/remove_cart/{id}', [AddtoCart::class, 'Remove_temp_cart']);
+    Route::post('/update-cart', [AddtoCart::class, 'update_temp_cart'])->name(name: 'update-cart.post');
+
+    //check out
+    Route::get('/checkout', [AddtoCart::class, 'checkoutPage']);
 });
