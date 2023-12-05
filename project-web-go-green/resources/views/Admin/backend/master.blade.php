@@ -7,28 +7,36 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title') - Go Green</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
-    <!-- https://fonts.google.com/specimen/Roboto -->
+
     <link rel="stylesheet" href="{{ asset('css/fontawesome.min.css') }}">
-    <link rel="stylesheet" href=" {{ asset('jquery-ui-datepicker/jquery-ui.min.css') }}" type="text/css" />
-    <!-- https://fontawesome.com/ -->
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-    <!-- https://getbootstrap.com/ -->
+
     <link rel="stylesheet" href="{{ asset('css/templatemo-style.css') }}">
-    <!--
-	Product Admin CSS Template
-	https://templatemo.com/tm-524-product-admin
-	-->
+
+    <link rel="stylesheet" href="{{ asset('css/quill.snow.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('css/toastr.min.css') }}">
+
+    <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
+
+    <script src="{{ asset('js/popper.min.js') }}"></script>
+
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+
+    <script src="{{ asset('js/quill.min.js') }}"></script>
+
+    <script src="{{ asset('js/toastr.min.js') }}"></script>
 </head>
 
 <body id="reportsPage">
     <div class="" id="home">
+
         <nav class="navbar navbar-expand-xl">
             <div class="container h-100">
                 <a class="navbar-brand" href="{{ asset('admin/home') }}">
                     <h1 class="tm-site-title mb-0">Trang Quản Trị</h1>
                 </a>
-                <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fas fa-bars tm-nav-icon"></i>
                 </button>
 
@@ -37,30 +45,21 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ asset('admin/home') }}">
                                 <i class="fas fa-tachometer-alt"></i>
-                                Dashboard
-                                <span class="sr-only">(current)</span>
+                                Bảng Điều Khiển
+
                             </a>
                         </li>
                         <li class="nav-item dropdown">
-
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
-                                <i class="far fa-file-alt"></i>
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-shopping-cart"></i>
                                 <span>
-                                    Reports <i class="fas fa-angle-down"></i>
+                                    Sản Phẩm <i class="fas fa-angle-down"></i>
                                 </span>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Daily Report</a>
-                                <a class="dropdown-item" href="#">Weekly Report</a>
-                                <a class="dropdown-item" href="#">Yearly Report</a>
+                                <a class="dropdown-item" href="{{ asset('admin/product') }}">Danh Sách Sản Phẩm</a>
+                                <a class="dropdown-item" href="{{ asset('admin/product/add') }}">Thêm Sản Phẩm</a>
                             </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ asset('admin/product') }}">
-                                <i class="fas fa-shopping-cart"></i>
-                                Sản Phẩm
-                            </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ asset('admin/category') }}">
@@ -68,28 +67,28 @@
                                 Danh Mục
                             </a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-cog"></i>
-                                <span>
-                                    Settings <i class="fas fa-angle-down"></i>
-                                </span>
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Profile</a>
-                                <a class="dropdown-item" href="#">Billing</a>
-                                <a class="dropdown-item" href="#">Customize</a>
+
+                        <li class="nav-item">
+                            <div class="input-group">
+                                <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                                <button type="button" class="btn btn-outline-primary" data-mdb-ripple-init>search</button>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <div class="d-flex align-items-center">
+                                <span class="mr-2 text-white font-weight-bold">Xin Chào {{ Auth::user()->user_name }}</span>
+                                <a class="nav-link" href="{{ asset('/admin/logout') }}">
+                                    <i class="fas fa-sign-out-alt fa-xs text-white"></i>
+                                </a>
                             </div>
                         </li>
                     </ul>
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link d-block" href="{{ asset('logout') }} ">
-                                {{ Auth::user()->email}}, <b>Logout</b>
-                            </a>
-                        </li>
-                    </ul>
+
+
                 </div>
             </div>
 
@@ -111,21 +110,5 @@
             </div>
         </footer>
     </div>
-
-
-
-    <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
-
-    <script src="{{ asset('js/popper.min.js') }}"></script>
-
-    <script src=" {{ asset('jquery-ui-datepicker/jquery-ui.min.js') }}"></script>
-
-    <script src="{{ asset('js/moment.min.js') }}"></script>
-
-    <script src="{{ asset('js/Chart.min.js') }}"></script>
-
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-
-    <script src="{{ asset('js/tooplate-scripts.js') }}"></script>
 
 </html>
