@@ -12,7 +12,7 @@ html {
 }
 body {
   font-family: Roboto, Helvetica, Arial, sans-serif;
-  background-color: #4e657a;
+  background-color: #d6d6d6;
   overflow-x: hidden;
 }
 a {
@@ -41,7 +41,7 @@ button:focus {
 }
 .navbar {
   height: 100px;
-  background-color: #567086;
+  background-color: #424242;
   padding: 0;
 }
 .navbar .container {
@@ -92,7 +92,7 @@ button:focus {
 .tm-block-title {
   font-size: 1.1rem;
   font-weight: 700;
-  color: #fff;
+  color: #000;
   margin-bottom: 30px;
 }
 .nav-link {
@@ -116,7 +116,7 @@ button:focus {
 .dropdown-menu {
   font-size: 90%;
   color: #fff;
-  background-color: #567086;
+  background-color: #303539;
   border-radius: 0;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -136,7 +136,7 @@ button:focus {
 }
 .dropdown-item:focus,
 .dropdown-item:hover {
-  background-color: #567086;
+  background-color: rgb(42, 44, 42);
 }
 .navbar-nav a:hover,
 .navbar-nav a:hover i {
@@ -278,18 +278,18 @@ thead {
   padding-right: 15px;
 }
 .form-control {
-  background-color: #54657d;
-  color: #fff;
+  background-color: #b9c0c9;
+  color: #000;
   border: 0;
 }
 .form-control:focus {
-  background-color: #60738e;
-  color: #fff;
+  background-color: #909193;
+  color: #000;
   border-color: transparent;
-  box-shadow: 0 0 0 0.1rem rgb(180, 206, 233, 0.5);
+  box-shadow: 0 0 0 0.1rem rgba(197, 213, 231, 0.5);
 }
 .form-group label {
-  color: #fff;
+  color: #000;
   margin-bottom: 10px;
 }
 .tm-hide-sm {
@@ -374,7 +374,7 @@ thead {
   color: #a0c0de;
 }
 .tm-bg-primary-dark {
-  background-color: #548ebe;
+  background-color: #eefcf3;
 }
 .tm-bg-gray {
   background-color: rgba(0, 0, 0, 0.05);
@@ -471,7 +471,7 @@ input[type="checkbox"]:focus {
 .custom-select {
   width: 100%;
   border: none;
-  color: #acc6de;
+  color: #fff;
   height: 50px;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -484,7 +484,7 @@ input[type="checkbox"]:focus {
   -o-border-radius: 0;
   border-radius: 0;
   padding: 15px;
-  background: url(../img/arrow-down.png) 98% no-repeat #50657b;
+  background: url(../img/arrow-down.png) 98% no-repeat #383a3c;
 }
 .custom-select:focus {
   outline: 0;
@@ -497,7 +497,7 @@ input[type="checkbox"]:focus {
   color: #9f1321;
 }
 .tm-footer {
-  background-color: #567086;
+  background-color: #353d44;
   padding-top: 30px;
   padding-bottom: 30px;
   -webkit-box-shadow: 0 -3px 5px 0 rgba(69, 92, 113, 0.59);
@@ -580,20 +580,6 @@ input[type="checkbox"]:focus {
   color: #aacbea;
 }
 
-@media (min-width: 1200px) {
-  .navbar-expand-xl .navbar-nav .nav-link {
-    padding-left: 28px;
-    padding-right: 28px;
-  }
-  .navbar-collapse {
-    height: 100%;
-  }
-}
-@media (min-width: 992px) {
-  .navbar-expand-lg .navbar-nav .nav-link {
-    padding: 15px 20px;
-  }
-}
 @media (max-width: 1275px) and (min-width: 1200px) {
   .nav-item {
     margin-right: 15px;
@@ -604,51 +590,7 @@ input[type="checkbox"]:focus {
     margin-right: 1px;
   }
 }
-@media (max-width: 1199px) {
-  .tm-col-big,
-  .tm-col-small {
-    width: 49.65%;
-  }
-  .navbar-collapse {
-    padding: 0;
-    box-shadow: rgba(255, 255, 255, 0.1) 0 1px 1px 1px;
-    position: absolute;
-    top: 72px;
-    right: 20px;
-    width: 200px;
-    z-index: 1000;
-  }
-  .dropdown-menu {
-    text-align: center;
-  }
-  .nav-link {
-    color: #fff;
-    background-color: #567086;
-    padding: 15px;
-    flex-direction: row;
-  }
-  .nav-link > i {
-    font-size: 1rem;
-    margin-right: 10px;
-    margin-bottom: 0;
-  }
-  .nav-item {
-    margin-right: 0;
-  }
-  .tm-block-taller {
-    max-height: 520px;
-  }
-}
-@media (max-width: 1199.98px) {
-  .navbar-expand-xl > .container,
-  .navbar-expand-xl > .container-fluid {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-  .navbar-collapse {
-    right: 15px;
-  }
-}
+
 @media (max-width: 991px) {
   .tm-col-big,
   .tm-col-small {
@@ -685,21 +627,6 @@ input[type="checkbox"]:focus {
     background-position: 96%;
   }
 }
-@media (max-width: 574px) {
-  .navbar-collapse {
-    top: 47px;
-  }
-  .navbar {
-    height: 50px;
-  }
-  .tm-site-title {
-    font-size: 1.4rem;
-    margin-left: 7px;
-  }
-  .tm-site-icon {
-    font-size: 2em;
-  }
-}
 @media (max-width: 480px) {
   .tm-mt-big {
     margin-top: 45px;
@@ -713,14 +640,14 @@ input[type="checkbox"]:focus {
   }
 }
 .dropdown{
-  position: absolute;
+  /* position: absolute; */
   top: 100%;
   left: 0;
   width: 10rem;
-  transform: translateY(10px);
-  opacity: 0;
-  pointer-events: none;
-  transition: .5s;
+  /* transform: translateY(10px); */
+  /* opacity: 0; */
+  /* pointer-events: none; */
+  /* transition: .5s; */
 }
 
 .dropdown ul{

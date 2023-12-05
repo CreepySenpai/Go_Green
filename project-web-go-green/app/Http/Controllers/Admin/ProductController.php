@@ -32,11 +32,6 @@ class ProductController extends Controller
         return view('Admin.backend.editproduct', $data);
     }
 
-    // public function testAdd(Request $request){
-    //     $path = Storage::putFile('public/images/product', $request->file('image'));
-    //     echo $path;
-    // }
-
     //Post
     public function postAddProduct(AddProductRequest $request){
         $path = Storage::putFile('public/images/product', $request->file('image'));
