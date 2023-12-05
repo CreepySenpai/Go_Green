@@ -14,6 +14,6 @@ class HomeController extends Controller
 
     public function getLogOut(){
         Auth::logout();
-        return view('Admin.backend.login')->with(['logoutSuccess' => 'Đăng Xuất Thành Công!!']);
+        return redirect('/login');
     }
 }
