@@ -2,7 +2,7 @@
 		<footer class="footer-section">
 			<div class="container relative">
 				<div class="row">
-					<div class="col-lg-8">
+					{{-- <div class="col-lg-8">
 						<div class="subscription-form">
 							<form action="#" class="row g-3">
 								<div class="col-auto">
@@ -18,7 +18,7 @@
 								</div>
 							</form>
 						</div>
-					</div>
+					</div> --}}
 				</div>
 
 				<div class="row g-5 mb-5">

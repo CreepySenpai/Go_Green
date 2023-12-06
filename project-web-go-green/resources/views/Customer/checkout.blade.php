@@ -20,20 +20,6 @@
 	<body>
 
 		@include('Customer.CustomerLayouts.header')
-        
-        <!-- Start Hero Section -->
-			<div class="hero">
-				<div class="container">
-					<div class="row justify-content-between">
-						<div class="col-lg-5">
-							<div class="intro-excerpt">
-								<h1>Checkout</h1>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		<!-- End Hero Section -->
 
 		<div class="untree_co-section">
 		    <div class="container">
@@ -194,7 +180,7 @@
 		                  </tbody>
 		                </table>
 		                <div class="form-group">
-		                  <button class="btn btn-black btn-lg py-3 btn-block" onclick="window.location='thankyou.html'">Place Order</button>
+		                  <button class="btn btn-black btn-lg py-3 btn-block" onclick="window.location='thankyou.html'">Đặt Hàng</button>
 		                </div>
 
 		              </div>
