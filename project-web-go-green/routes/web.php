@@ -39,11 +39,15 @@ Route::group(['namespace' => 'Admin'], function() {
         Route::post('/', [LoginController::class, 'postLogin']);
     });
 
-    Route::get('/admin/logout', [HomeController::class, 'getLogout']);
+
 
     // Check if guest try to go home page with out loggin
     Route::group(['prefix' => 'admin', 'middleware' => ['CheckLoggedOut', 'AdminLoggin']], function(){
         Route::get('/home', [HomeController::class, 'getHome']);
+
+        Route::get('/logout', [HomeController::class, 'getLogout']);
+
+        Route::get('/search', [ProductController::class, 'getSearchResult']);
 
         Route::group(['prefix' => 'category'], function(){
             Route::get('/', [CategoryController::class, 'getCategory']);

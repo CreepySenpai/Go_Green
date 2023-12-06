@@ -1,25 +1,25 @@
 @extends('Admin.backend.master')
-@section('title', 'Sản Phẩm')
+@section('title', 'Sản Phẩm Tìm Được')
 @section('main')
 
 <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 
 <div class="container mt-2">
-    <h4>Tìm Kiếm Sản Phẩm</h4>
-    <form class="input-group rounded" method="get" action="{{ asset('/admin/search/') }}">
-        <input type="text" name="result" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-        <button type="submit" style="border-radius: 5px; border-color: transparent;">
-            <span class="input-group-text border-0" id="search-addon">
-                <i class="fas fa-search"></i>
-            </span>
-        </button>
-    </form>
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Tìm Kiếm Với Từ Khoá {{ $searchProduct }}</h4>
+            <h6 class="card-subtitle mb-2 text-muted">Đã Tìm Thấy {{ $productCount }} Sản Phẩm</h6>
+        </div>
+    </div>
 </div>
+
+
 
 <div class="container mt-5">
     <div class="row">
         <!-- Product 1 -->
-        @foreach($products as $product)
+
+        @foreach($productFounds as $product)
 
         <div class="col-md-4 mb-4">
             <div class="card">
