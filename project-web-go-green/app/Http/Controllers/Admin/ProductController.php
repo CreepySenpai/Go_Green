@@ -32,6 +32,14 @@ class ProductController extends Controller
         return view('Admin.backend.editproduct', $data);
     }
 
+    public function getSearchResult(Request $request){
+        $result = str_replace(' ', '%', $request->result); // Remove BackSpace
+        $data['searchProduct'] = $request->result;
+        $data['productFounds'] = Product::where('product_name', 'like', '%' . $result . '%')->get();
+        $data['productCount'] = Product::where('product_name', 'like', '%' . $result . '%')->count();
+        return view('Admin.backend.searchproduct', $data);
+    }
+
     //Post
     public function postAddProduct(AddProductRequest $request){
         $path = Storage::putFile('public/images/product', $request->file('image'));
