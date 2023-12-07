@@ -99,6 +99,11 @@ Route::group(['namespace' => 'Customer'], function() {
     Route::get('/remove_cart/{id}', [AddtoCart::class, 'Remove_temp_cart']);
     Route::post('/update-cart', [AddtoCart::class, 'update_temp_cart'])->name(name: 'update-cart.post');
 
-    //check out
-    Route::get('/checkout', [AddtoCart::class, 'checkoutPage']);
+    //check out  route
+    Route::get('/checkout', [AddtoCart::class, 'checkoutPage'])->name(name: 'checkout');
+
+    //Order page route
+    Route::get('/CheckOrder', [AddtoCart::class, 'OrderPage'])->middleware('isLoggedIn');
+    Route::post('/CheckOrder', [AddtoCart::class, 'add_order'])->name(name: 'CheckOrder.post');
+    Route::get('/remove_order/{id}', [AddtoCart::class, 'Remove_cart']);
 });

@@ -11,7 +11,7 @@
 
         <div class="col-md-4 mb-4">
             <div class="card">
-                <img src="{{ asset('storage' . $product->product_image) }}" style="width: 350px; height: 300px" class="card-img-top" alt="Product Image">
+                <img src="{{ asset('storage/' . $product->product_image) }}" style="width: 350px; height: 300px" class="card-img-top" alt="Product Image">
                 <div class="card-body">
                     <h5 class="card-title">{{ $product->product_name }}</h5>
                     <p class="card-text"> <?php echo substr(str_replace('"', '', $product->product_desc), 0, 30); ?></p>
