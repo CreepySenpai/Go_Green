@@ -1,106 +1,160 @@
 @extends('Admin.backend.master')
 @section('title', 'Chỉnh Sửa Sản Phẩm')
 @section('main')
-<link rel="stylesheet" href="{{ asset('css/custom.css'); }}">
 
-<div class="container tm-mt-big tm-mb-big">
-    <div class="row">
-        <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
-            <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
-                <div class="row">
-                    <div class="col-12">
-                        <h2 class="tm-block-title d-inline-block">Sửa Sản Phẩm</h2>
-                    </div>
-                </div>
-                <div class="row tm-edit-product-row">
-                    <div class="col-xl-12 col-lg-12 col-md-12">
-                        @include('errors.error')
-                        <form method="post" class="tm-edit-product-form" enctype="multipart/form-data" id="addproductform">
-                            <div class="form-group mb-3">
-                                <label for="name">Tên Sản Phẩm
-                                </label>
-                                <input id="name" name="name" type="text" value="{{ $product->product_name; }}" class="form-control validate" />
-                            </div>
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/libs/select2/dist/css/select2.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/libs/jquery-minicolors/jquery.minicolors.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/libs/quill/dist/quill.snow.css') }}">
+<!-- <link rel="stylesheet" href="{{ asset('assets/libs/custom/custom.css'); }}"> -->
 
-                            <div class="form-group mb-3">
-                                <label for="description">Mô Tả</label>
-                                <div id="editor" style="height: 300px;">
-                                    <?php echo str_replace('"', '', $product->product_desc); ?>
-                                </div>
-
-                            </div>
-                            <textarea name="description" style="display: none;" id="hiddenAreaAddProduct"></textarea>
-
-                            <div class="form-group mb-3">
-                                <label for="category">Danh Mục</label>
-                                <select class="custom-select tm-select-accounts" id="category" name="category">
-                                    @foreach($categoryList as $category)
-                                    <option value="{{ $category->cate_id; }}" @if($product->product_type == $category->cate_id) selected @endif > {{ $category->cate_name; }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="row">
-                                <div class="form-group mb-3 col-xs-12 col-sm-6">
-                                    <label for="expire_date">Số Lượng
-                                    </label>
-                                    <input id="count" name="count" type="number" value="{{ $product->product_count; }}" class="form-control validate" />
-                                </div>
-                                <div class="form-group mb-3 col-xs-12 col-sm-6">
-                                    <label for="stock"> Giá
-                                    </label>
-                                    <input id="price" name="price" type="number" value="{{ $product->product_price; }}" class="form-control validate" />
-                                </div>
-                            </div>
-
-
-
-                            <div class="col-12">
-                                <label for=""> Hình Ảnh Hiện Tại</label>
-                                <br>
-                                <img src="{{ asset('storage/' . $product->product_image); }}" alt="Smth">
-                            </div>
-
-                            <label for="">Thêm Hình Ảnh</label>
-                            <div class="container">
-
-                                <br>
-                                <div id="drop-area">
-                                    <h3>Drag & Drop Images Here</h3>
-                                    <p>or</p>
-                                    <input type="file" name="image" id="fileInput" multiple>
-                                </div>
-
-                                <div id="image-container" class="row"></div>
-                            </div>
-
-                            <div class="col-12">
-                                <input type="submit" class="btn btn-primary btn-block text-uppercase" value="Cập Nhật">
-                            </div>
-                            <div class="mt-3 col-12">
-                                <a href="{{ asset('admin/product') }}" class="btn btn-danger btn-block text-uppercase" style="border-radius: 5px; color: white;">Huỷ</a>
-                            </div>
-                            {{ csrf_field() }}
-                        </form>
-                    </div>
+<!-- Page wrapper  -->
+<!-- ============================================================== -->
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <h4 class="page-title">Chỉnh Sửa Sản Phẩm</h4>
+                <div class="ml-auto text-right">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{{ asset('admin/home') }}">Trang Chủ</a></li>
+                            <li class="breadcrumb-item"><a href="{{ asset('admin/product') }}">Sản Phẩm</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Chỉnh Sửa Sản Phẩm</li>
+                        </ol>
+                    </nav>
                 </div>
             </div>
         </div>
     </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    @include('errors.error')
+                    <form class="form-horizontal" method="post" id="addproductform" enctype="multipart/form-data">
+                        <div class="card-body">
+                            <h5 class="card-title">Chỉnh Sửa Sản Phẩm</h5>
+                            <div class="form-group row">
+                                <label for="fname" class="col-md-3 m-t-15">Tên Sản Phẩm</label>
+                                <div class="col-sm-9">
+                                    <input name="name" type="text" class="form-control" id="fname" value="{{ $product->product_name }}">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="fname" class="col-md-3 m-t-15">Số Lượng</label>
+                                <div class="col-sm-9">
+                                    <input name="count" type="number" class="form-control" id="fname" value="{{ $product->product_count }}">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="fname" class="col-md-3 m-t-15">Giá</label>
+                                <div class="col-sm-9">
+                                    <input name="price" type="number" class="form-control" id="fname" value="{{ $product->product_price }}">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-3 m-t-15">Danh Mục</label>
+                                <div class="col-md-9">
+                                    <select name="category" class="select2 form-control custom-select" style="width: 100%; height:36px;">
+
+                                        @foreach($categoryList as $category)
+                                        <option value="{{ $category->cate_id }}" @if($product->product_type == $category->cate_id) selected @endif>
+                                            {{ $category->cate_name }}
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-md-3">Chọn Hình Ảnh</label>
+                                <div class="col-md-9">
+                                    <div class="custom-file">
+                                        <input name="image" type="file" class="custom-file-input" id="validatedCustomFile" accept="image/x-png,image/gif,image/jpeg">
+                                        <label class="custom-file-label" for="validatedCustomFile">Chọn File...</label>
+                                        <div class="invalid-feedback">Example invalid custom file feedback</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">Mô Tả Sản Phẩm</h4>
+                            <!-- Create the editor container -->
+                            <div id="editor" style="height: 300px;">
+                                <?php echo str_replace('"', '', $product->product_desc); ?>
+                            </div>
+                        </div>
+                        <textarea name="description" style="display: none;" id="hiddenAreaAddProduct"></textarea>
+                        <div class="border-top">
+                            <div class="card-body">
+                                <input type="submit" class="btn btn-primary" value="Thay Đổi">
+                            </div>
+                        </div>
+                        {{ csrf_field() }}
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ============================================================== -->
+        <!-- End PAge Content -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right sidebar -->
+        <!-- ============================================================== -->
+        <!-- .right-sidebar -->
+        <!-- ============================================================== -->
+        <!-- End Right sidebar -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- footer -->
+    <!-- ============================================================== -->
+    <footer class="footer text-center">
+        All Rights Reserved by Matrix-admin. Designed and Developed by Onichan
+    </footer>
+    <!-- ============================================================== -->
+    <!-- End footer -->
+    <!-- ============================================================== -->
 </div>
-
-<script>
-    var quill = new Quill('#editor', {
-        theme: 'snow'
-    });
-
-
-    $(document).ready(function() {
-        $("#addproductform").on("submit", function() {
-            $('#hiddenAreaAddProduct').val(JSON.stringify(quill.root.innerHTML));
-        });
-    });
-</script>
+<!-- ============================================================== -->
+<!-- End Page wrapper  -->
+<!-- ============================================================== -->
 
 <script src="{{ asset('js/draganddropimage.js') }}"></script>
+
+@php
+    $htm = ltrim($product->product_desc, '"');
+    $newHtml = rtrim($htm, '"');
+@endphp
+<script>
+            // var quill = new Quill('#editor', {
+            //     theme: 'snow'
+            // });
+
+            // quill.clipboard.dangerouslyPasteHTML("{{ $newHtml }}");
+            // console.log(quill.root.innerHTML);
+            // quill.root.innerHTML = '{{ $newHtml }}';
+            // const delta = quill.clipboard.convert("{{ $newHtml }}")
+
+            // quill.setContents(delta, 'silent')
+</script>
 
 @stop

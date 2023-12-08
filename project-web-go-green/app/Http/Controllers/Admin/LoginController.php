@@ -3,36 +3,29 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
-use Illuminate\Http\Request;
+use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
 {
     public function getLogin(){
-        return view('Admin.backend.login');
+        return view('Admin.backend.login2');
     }
 
-    public function postLogin(Request $request){
-        $this->validate($request, [
-            'email' => 'required|email',
-            'password' => 'required|alphaNum|min:3'
-        ]);
+    public function postLogin(LoginRequest $request){
 
-        $loginValue = ['email' => $request->input('email'), 'password' => $request->input('password')];
-        if($request->input('remember') == "Remember Me"){
+        $remember = false;
+        if($request->remember == "remember"){
             $remember = true;
         }
-        else{
-            $remember = false;
-        }
+        $loginValue = ['email' => $request->email, 'password' => $request->password];
 
         if(Auth::attempt($loginValue, $remember)){
-            return redirect()->intended('admin/home');
+            return redirect('/admin/home');
         }
         else{
             return back()->withInput()->with('error', "Tài Khoản Hoặc Mật Khẩu Không Đúng!!!");
         }
+
     }
 }

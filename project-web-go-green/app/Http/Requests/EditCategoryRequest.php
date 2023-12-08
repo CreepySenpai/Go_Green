@@ -22,7 +22,7 @@ class EditCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'cate_name' => 'unique:vp_categories,cate_name,' . $this->segment(4) . ',cate_id'
+            'cate_name' => 'unique:Categories,cate_name,' . $this->segment(4) . ',cate_id'
              // vị trí thứ tự của đường dẫn được phân cách bởi / -> dùng để loại trừ giá trị cột cate_id
         ];
     }

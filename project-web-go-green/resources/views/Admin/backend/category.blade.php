@@ -2,124 +2,122 @@
 @section('title', 'Danh Mục Sản Phẩm')
 @section('main')
 
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/extra-libs/multicheck/multicheck.css') }}">
+<link href="{{ asset('assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css') }}" rel="stylesheet">
 
-<div class="container tm-mt-big tm-mb-big" style="margin-left: 8% !important;">
-
-<div class="row" style="width: 1300px !important">
-
-  <!-- Add Category Block -->
-  <div class="col-5">
-
-    <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
-      <div class="row">
-        <div class="col-12">
-          <h2 class="tm-block-title d-inline-block">Thêm Danh Mục</h2>
+<!-- Page wrapper  -->
+<!-- ============================================================== -->
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <h4 class="page-title">Danh Mục</h4>
+                <div class="ml-auto text-right">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{{ asset('admin/home') }}">Trang Chủ</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Danh Mục</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
         </div>
-      </div>
-
-    @include('errors.error')
-      <div class="row tm-edit-product-row">
-
-        <div class="col-12 col-lg-12 col-md-12">
-
-          <form method="post" class="tm-edit-product-form">
-            {{ csrf_field() }}
-            <div class="form-group mb-3">
-              <label
-                for="name"
-                >Tên Danh Mục
-              </label>
-              <input
-                id="name"
-                name="cate_name"
-                type="text"
-                class="form-control validate"
-                required
-              />
-            </div>
-
-            <div class="form-group mb-3">
-              <label
-                for="des"
-                >Mô Tả</label
-              >
-              <textarea
-                id="des"
-                name="cate_des"
-                class="form-control validate"
-                rows="3"
-                required
-              ></textarea>
-            </div>
-
-            <div class="col-12" style="text-align: center;">
-                <input name="btn_submit" value="Thêm Ngay" type="submit" class="btn btn-primary btn-block text-uppercase" style="border-radius: 5px;">
-            </div>
-         </form>
-
-        </div>
-      </div>
-
     </div>
 
+    @if(session()->has('edit_category_success'))
+        <script>
+            toastr.success( "{{ session('edit_category_success') }}", 'Thành Công!!');
+        </script>
+    @endif
 
-  </div>
+    @if(session()->has('delete_category_success'))
+        <script>
+            toastr.success("{{ session('delete_category_success') }}", 'Thành Công!!');
+        </script>
+    @endif
 
-  <!-- List Category -->
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Danh Sách Danh Mục</h5>
+                        <div class="table-responsive">
+                            <table id="zero_config" class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Tên Danh Mục</th>
+                                        <th>Mô Tả</th>
+                                        <th>&nbsp;</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
 
+                                    @foreach($categoryList as $category)
+                                        <tr>
+                                            <td>
+                                                {{ $category->cate_name }}
+                                            </td>
+                                            <td>
+                                                <?php echo str_replace('"', '', $category->cate_des); ?>
+                                            </td>
+                                            <td>
+                                                <div class="btn-group" role="group">
+                                                    <a href="{{ asset('admin/category/edit/' . $category->cate_id ) }}" style="color: white; background-color: #17a2b8 !important; border-color: #17a2b8;" class="btn btn-info"><i class="fas fa-pen-square"></i> Sửa</a>
+                                                    <a href="{{ asset('admin/category/delete/' . $category->cate_id ) }}" style="color: white;" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Xoá</a>
+                                                </div>
+                                            </td>
 
-  <div class="col-6" style="margin-left: 5%;">
-    <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
-      <div class="row">
-        <div class="col-12">
-          <h2 class="tm-block-title d-inline-block">Danh Sách Danh Mục</h2>
-        </div>
-      </div>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>Tên Danh Mục</th>
+                                        <th>Mô Tả</th>
+                                        <th>&nbsp;</th>
 
-      <div>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th style="width: 20%;">
-                        Tên
-                    </th>
-
-                    <th> Mô Tả </th>
-
-                    <th> Tuỳ Chọn</th>
-                </tr>
-            </thead>
-          <tbody>
-            @foreach($categoryList as $category)
-                <tr>
-                    <td>{{ $category->cate_name }}</td>
-                    <td>
-                        {{ $category->cate_des }}
-                    </td>
-                    <td class="row">
-                    <a href="{{ asset('admin/category/edit/'. $category->cate_id) }}" class="ml-3" style="background-color: orange; color: white; border-radius: 5px; width: 40px; text-align: center;">
-                        <div>
-                        Sửa
+                                    </tr>
+                                </tfoot>
+                            </table>
                         </div>
-                    </a>
-                    <a class="ml-3" href="{{ asset('admin/category/delete/'. $category->cate_id )}}" style="background-color: red; color: white; border-radius: 5px; width: 40px; text-align: center;"
-                        onclick="return confirm('Bạn Có Chắc Muốn Xoá Danh Mục Này?')">
-                        <span class=""></span>
-                        Xoá
 
-                    </a>
-                    </td>
-                </tr>
-            @endforeach
-          </tbody>
-        </table>
-      </div>
-
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End PAge Content -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right sidebar -->
+        <!-- ============================================================== -->
+        <!-- .right-sidebar -->
+        <!-- ============================================================== -->
+        <!-- End Right sidebar -->
+        <!-- ============================================================== -->
     </div>
-  </div>
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- footer -->
+    <!-- ============================================================== -->
+    <footer class="footer text-center">
+        All Rights Reserved by Matrix-admin. Designed and Developed by OniChan
+    </footer>
+    <!-- ============================================================== -->
+    <!-- End footer -->
+    <!-- ============================================================== -->
 </div>
-
-
-</div>
+<!-- ============================================================== -->
+<!-- End Page wrapper  -->
+<!-- ============================================================== -->
 
 @stop
