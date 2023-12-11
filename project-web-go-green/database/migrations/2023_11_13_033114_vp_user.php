@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('user_name');
             $table->string('email');
             $table->string('password');
-            $table->tinyInteger('role');
+            $table->bigInteger('role_type')->unsigned();
             $table->rememberToken();
             $table->timestamps();
         });

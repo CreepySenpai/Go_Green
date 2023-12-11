@@ -1,0 +1,52 @@
+#drop-area {
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+}
+
+#image-container {
+    margin-top: 20px;
+
+}
+
+
+/* Custom Product Page: */
+
+
+        /* body {
+            background-color: #f8f9fa;
+        } */
+
+.card_c {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: transform 0.2s;
+
+}
+
+.card_c:hover {
+    transform: scale(1.05);
+}
+
+.card_c img {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    max-width: 350px;
+    max-height: 350px;
+    width: auto;
+    height: auto;
+}
+.card-title_c {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.75rem;
+}
+
+.card-text_c {
+    color: #555;
+}
+
+.btn-group {
+    margin-top: 1rem;
+}

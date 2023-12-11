@@ -15,7 +15,10 @@ class CategoryController extends Controller
     public function getCategory(){
         $data['categoryList'] = Category::all();
         return view('Admin.backend.category', $data);
-        return view('Admin.backend.addproduct', $data);
+    }
+
+    public function getAddCategory(){
+        return view('Admin.backend.addcategory');
     }
 
     public function getEditCategory($id){
@@ -23,32 +26,30 @@ class CategoryController extends Controller
         return view('Admin.backend.editcategory', $data);
     }
 
-
     // Post
-    public function postCategory(AddCategoryRequest $request){
+    public function postAddCategory(AddCategoryRequest $request){
         $category = new Category();
         $category->cate_name = $request->cate_name;
-        $category->cate_des = $request->cate_des;
+        $category->cate_des = $request->description;
         $category->cate_slug = Str::slug($request->cate_name);
 
         $category->save(); // save to database
-
-        return back();
+        return redirect()->back()->with(['add_category_success' => 'Thêm Danh Mục Thành Công!!!']);
     }
 
     public function postEditCategory(EditCategoryRequest $request, $id){
         $category = Category::find($id);
         $category->cate_name = $request->cate_name;
-        $category->cate_des = $request->cate_des;
+        $category->cate_des = $request->description;
         $category->cate_slug = Str::slug($request->cate_name);
         $category->save();
 
-        return redirect()->intended('admin/category'); // return to category
+        return redirect('admin/category')->with(['edit_category_success' => 'Thay Đổi Danh Mục Thành Công!!']); // return to category
     }
 
     // Delete
     public function getDeleteCategory($id){
         Category::destroy($id);
-        return back();
+        return redirect()->back()->with(['delete_category_success' => 'Xoá Danh Mục Thành Công!!!']);
     }
 }

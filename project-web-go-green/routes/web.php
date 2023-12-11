@@ -3,6 +3,9 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\RegisterController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Customer\ShopController;
 use App\Http\Controllers\Customer\SignInUp;
 use App\Http\Controllers\Customer\ProductDetailsController;
@@ -31,27 +34,76 @@ use App\Http\Controllers\Admin\ProductController;
 // });
 
 
-//Group Route In Folder Admin
+// //Group Route In Folder Admin
+// Route::group(['namespace' => 'Admin'], function() {
+//     // If user press login we check if user was logged
+//     Route::group(['prefix' => 'login', 'middleware' => 'CheckLoggedIn'], function() {
+//         Route::get('/', [LoginController::class, 'getLogin']);
+//         Route::post('/', [LoginController::class, 'postLogin']);
+//     });
+
+//     // Check if guest try to go home page with out loggin
+//     Route::group(['prefix' => 'admin', 'middleware' => ['CheckLoggedOut', 'AdminLoggin']], function(){
+//         Route::get('/home', [HomeController::class, 'getHome']);
+
+//         Route::get('/logout', [HomeController::class, 'getLogout']);
+
+//         Route::get('/search', [ProductController::class, 'getSearchResult']);
+
+//         Route::group(['prefix' => 'category'], function(){
+//             Route::get('/', [CategoryController::class, 'getCategory']);
+//             Route::post('/', [CategoryController::class, 'postCategory']);
+
+//             Route::get('/edit/{id}', [CategoryController::class, 'getEditCategory']);
+//             Route::post('/edit/{id}', [CategoryController::class, 'postEditCategory']);
+
+//             Route::get('/delete/{id}', [CategoryController::class, 'getDeleteCategory']);
+//         });
+
+//         Route::group(['prefix' => 'product'], function(){
+//             Route::get('/', [ProductController::class, 'getProduct']);
+
+
+//             Route::get('/add', [ProductController::class, 'getAddProduct']);
+//             Route::post('/add', [ProductController::class, 'postAddProduct']);
+
+//             Route::get('/edit/{id}', [ProductController::class, 'getEditProduct']);
+//             Route::post('/edit/{id}', [ProductController::class, 'postEditProduct']);
+
+//             Route::get('/delete/{id}', [ProductController::class, 'getDeleteProduct']);
+//         });
+//     });
+
+
+// });
+
+Route::group(['prefix' => 'AdLogin', 'middleware' => 'CheckLoggedIn'], function() {
+    Route::get('/', [LoginController::class, 'getLogin']);
+    Route::post('/', [LoginController::class, 'postLogin']);
+});
+
+Route::group(['prefix' => 'AdRegister'], function() {
+    Route::get('/', [RegisterController::class, 'getRegister']);
+    Route::post('/', [RegisterController::class, 'postRegister']);
+});
+
+
+// Route::get('/logout', [HomeController::class, 'getLogout']);
+
+// Group Route In Folder Admin
 Route::group(['namespace' => 'Admin'], function() {
-    // If user press login we check if user was logged
-    Route::group(['prefix' => 'login', 'middleware' => 'CheckLoggedIn'], function() {
-        Route::get('/', [LoginController::class, 'getLogin']);
-        Route::post('/', [LoginController::class, 'postLogin']);
-    });
-
-
 
     // Check if guest try to go home page with out loggin
-    Route::group(['prefix' => 'admin', 'middleware' => ['CheckLoggedOut', 'AdminLoggin']], function(){
+    // Route::group(['prefix' => 'admin', 'middleware' => ['CheckLoggedOut', 'AdminLoggin']], function(){
+    Route::group(['prefix' => 'admin'], function(){
+
         Route::get('/home', [HomeController::class, 'getHome']);
-
-        Route::get('/logout', [HomeController::class, 'getLogout']);
-
-        Route::get('/search', [ProductController::class, 'getSearchResult']);
 
         Route::group(['prefix' => 'category'], function(){
             Route::get('/', [CategoryController::class, 'getCategory']);
-            Route::post('/', [CategoryController::class, 'postCategory']);
+
+            Route::get('/add/', [CategoryController::class, 'getAddCategory']);
+            Route::post('/add/', [CategoryController::class, 'postAddCategory']);
 
             Route::get('/edit/{id}', [CategoryController::class, 'getEditCategory']);
             Route::post('/edit/{id}', [CategoryController::class, 'postEditCategory']);
@@ -71,9 +123,19 @@ Route::group(['namespace' => 'Admin'], function() {
 
             Route::get('/delete/{id}', [ProductController::class, 'getDeleteProduct']);
         });
+
+        Route::group(['prefix' => 'user'], function(){
+            Route::get('/', [UserController::class, 'getUser']);
+            Route::get('/edit/{user_id}', [UserController::class, 'getEditUser']);
+            Route::post('/edit/{user_id}', [UserController::class, 'postEditUser']);
+            Route::get('/delete/{user_id}', [UserController::class, 'getDeleteUser']);
+        });
+
+        Route::group(['prefix' => 'order'], function(){
+            Route::get('/', [OrderController::class, 'getOrder']);
+            Route::get('/delete/{order_id}', [OrderController::class, 'getDeleteOrder']);
+        });
     });
-
-
 });
 
 //Group Route In Folder Customer

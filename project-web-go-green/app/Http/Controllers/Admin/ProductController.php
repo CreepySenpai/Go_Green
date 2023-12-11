@@ -16,14 +16,15 @@ class ProductController extends Controller
 {
     //Get
     public function getProduct(){
-        $data['products'] = Product::all();
+        $data['productList'] = Product::all();
         $data['cate'] = Category::all();
+        $data['mode'] = 'table';
         return view('Admin.backend.products', $data);
     }
 
     public function getAddProduct(){
         $data['categoryList'] = Category::all();
-        return view('Admin.backend.addproduct', $data);
+        return view('Admin.backend.addproduct2', $data);
     }
 
     public function getEditProduct($id){
@@ -32,16 +33,8 @@ class ProductController extends Controller
         return view('Admin.backend.editproduct', $data);
     }
 
-    public function getSearchResult(Request $request){
-        $result = str_replace(' ', '%', $request->result); // Remove BackSpace
-        $data['searchProduct'] = $request->result;
-        $data['productFounds'] = Product::where('product_name', 'like', '%' . $result . '%')->get();
-        $data['productCount'] = Product::where('product_name', 'like', '%' . $result . '%')->count();
-        return view('Admin.backend.searchproduct', $data);
-    }
-
     //Post
-    public function postAddProduct(AddProductRequest $request){
+    public function postAddProduct(Request $request){
         $path = Storage::putFile('public/images/product', $request->file('image'));
 
         $str = explode('/', $path);
@@ -65,7 +58,7 @@ class ProductController extends Controller
         $product->product_type = $request->category;
         $product->save();
 
-        return back();
+        return redirect()->back()->with(['add_product_success' => 'Thêm Sản Phẩm Thành Công!!!']);
     }
 
     public function postEditProduct(EditProductRequest $request, $id){
@@ -95,11 +88,11 @@ class ProductController extends Controller
         }
 
         $product::where('product_id', $id)->update($data);
-        return redirect('admin/product');
+        return redirect('admin/product')->with(['edit_product_success' => 'Thay Đổi Sản Phẩm Thành Công!!!']);
     }
 
     public function getDeleteProduct($id){
         Product::destroy($id);
-        return redirect('admin/product');
+        return redirect()->back()->with(['delete_product_success' => 'Xoá Sản Phẩm Thành Công!!!']);
     }
 }
