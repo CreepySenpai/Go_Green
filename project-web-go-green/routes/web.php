@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\RegisterController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Customer\ShopController;
@@ -128,6 +129,11 @@ Route::group(['namespace' => 'Admin'], function() {
             Route::get('/edit/{user_id}', [UserController::class, 'getEditUser']);
             Route::post('/edit/{user_id}', [UserController::class, 'postEditUser']);
             Route::get('/delete/{user_id}', [UserController::class, 'getDeleteUser']);
+        });
+
+        Route::group(['prefix' => 'order'], function(){
+            Route::get('/', [OrderController::class, 'getOrder']);
+            Route::get('/delete/{order_id}', [OrderController::class, 'getDeleteOrder']);
         });
     });
 });

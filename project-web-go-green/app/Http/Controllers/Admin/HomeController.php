@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Product;
@@ -18,6 +19,8 @@ class HomeController extends Controller
         $data['productCount'] = Product::all()->count();
         $data['categoryCount'] = Category::all()->count();
         $data['commentCount'] = Comment::all()->count();
+        $data['orderCount'] = Cart::all()->count();
+        $data['orderList'] = Cart::orderBy('updated_at', 'desc')->take(5);
         return view('Admin.backend.index', $data);
     }
 
