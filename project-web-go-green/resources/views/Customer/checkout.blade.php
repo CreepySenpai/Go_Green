@@ -136,10 +136,10 @@
 		              </div>
 		            </div>
 
-		            <div class="form-group">
+		            {{-- <div class="form-group">
 		              <label for="c_order_notes" class="text-black">Lời nhắn cho shop:</label>
 		              <textarea name="c_order_notes" id="c_order_notes" cols="30" rows="5" class="form-control"></textarea>
-		            </div>
+		            </div> --}}
 		          </div>
 		        </div>
 

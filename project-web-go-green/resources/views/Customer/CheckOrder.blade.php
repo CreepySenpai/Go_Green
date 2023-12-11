@@ -20,7 +20,23 @@
 	<body>
 
 		@include('Customer.CustomerLayouts.header')
-		
+	
+		@if ($order->isEmpty() || $order->first()->customer_id === null)
+			        <!-- Start Hero Section -->
+					<div class="hero">
+						<div class="container">
+							<div class="row justify-content-between">
+								<div class="col-lg-7">
+									<div class="intro-excerpt">
+										<h1>Bạn chưa đặt đơn hàng nào</h1>
+									</div>
+								</div>
+				
+							</div>
+						</div>
+					</div>
+				<!-- End Hero Section -->
+		@endif
 		<div class="untree_co-section before-footer-section">
             <div class="container">
               <div class="row mb-5">
@@ -28,8 +44,6 @@
                   <div class="site-blocks-table">
                     <table class="table">
                       <thead>
-							
-					
                         <tr>
                           <th class="product-thumbnail">Tên người nhận</th>
                           <th class="product-name">Mã đơn hàng</th>
@@ -39,6 +53,7 @@
                           <th class="product-status">Trạng thái</th>
                           <th class="product-remove">Hủy đơn hàng</th>
                         </tr>
+					
                       </thead>
                       <tbody>
 						@foreach ($order as $order)

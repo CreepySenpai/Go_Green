@@ -49,7 +49,7 @@
                   <div class="site-blocks-table">
                     <table class="table">
                       @if ($temp_cart->isEmpty() || $temp_cart->first()->customer_id === null)
-                          <h1>Bạn chưa thêm giỏ hàng</h1>
+                          <h1>Bạn không có sản phẩm nào giỏ hàng</h1>
                       @else
                       <thead>
                         <tr>

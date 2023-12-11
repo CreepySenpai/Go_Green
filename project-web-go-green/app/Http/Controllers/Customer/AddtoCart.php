@@ -11,6 +11,7 @@ use App\Models\Product;
 use App\Models\Cart;
 use App\Models\cus_account;
 use App\Models\temp_cart;
+use App\Models\order_detail;
 use PhpParser\Node\Stmt\For_;
 
 
@@ -57,7 +58,7 @@ class AddtoCart extends Controller
       $info_user = cus_account::where('id', '=', Session::get('LoginID'))->first();
       $id = $info_user->id;
 
-      $order = Cart::where('customer_id', '=',  $id)->get();
+      $order = Cart::where('customer_id', '=', $id)->get();
 
       return view('Customer.CheckOrder', compact('order'));
     }
@@ -165,6 +166,12 @@ class AddtoCart extends Controller
     $totalcart = 0;
     foreach($temp_cart as $temp_cart) {
       $totalcart = $totalcart + $temp_cart->total_price;
+      $order_detail = new order_detail;
+      $order_detail->order_code = $uniqid;
+      $order_detail->product_title = $temp_cart->product_title;
+      $order_detail->quantity = $temp_cart->temp_quantity;
+      $order_detail->total_price = $temp_cart->total_price;
+      $order_detail -> save();
     }
     // dd($totalcart);
 
@@ -184,6 +191,8 @@ class AddtoCart extends Controller
       $cart->status_order='Đang xác nhận';
 
       $cart->save();
+      
+
 
       $temp_cart = temp_cart::where('customer_id', '=', $id_cus)->delete();
 
@@ -192,6 +201,7 @@ class AddtoCart extends Controller
     
     public function Remove_cart($id) {
       $cart=Cart::find($id);
+      $order_detail = order_detail::where('order_code', '=', $cart->order_code)->delete();
       $cart->delete();
       return redirect()->back();
   }
