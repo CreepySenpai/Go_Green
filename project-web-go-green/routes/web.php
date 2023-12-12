@@ -129,6 +129,9 @@ Route::group(['namespace' => 'Admin'], function() {
             Route::get('/edit/{user_id}', [UserController::class, 'getEditUser']);
             Route::post('/edit/{user_id}', [UserController::class, 'postEditUser']);
             Route::get('/delete/{user_id}', [UserController::class, 'getDeleteUser']);
+
+            Route::get('/add', [UserController::class, 'getAddUser']);
+            Route::post('/add', [UserController::class, 'postAddUser']);
         });
 
         Route::group(['prefix' => 'order'], function(){
