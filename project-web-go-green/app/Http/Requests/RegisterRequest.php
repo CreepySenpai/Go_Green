@@ -22,7 +22,7 @@ class RegisterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => 'unique:Users,email'
+            'email' => 'unique:vp_users,email'
         ];
     }
 
