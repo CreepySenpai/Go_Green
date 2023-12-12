@@ -249,7 +249,14 @@
                                 </ul>
                             </li>
 
-                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ asset('admin/user') }}" aria-expanded="false"><i class="fas fa-user-circle"></i><span class="hide-menu">Danh Sách Người Dùng</span></a></li>
+
+                            <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-id-badge"></i><span class="hide-menu"> Người Dùng </span></a>
+                                <ul aria-expanded="false" class="collapse  first-level">
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ asset('admin/user') }}" aria-expanded="false"><i class="fas fa-user-circle"></i><span class="hide-menu">Danh Sách Người Dùng</span></a></li>
+                                    <li class="sidebar-item"><a href="{{ asset('admin/user/add') }}" class="sidebar-link"><i class="far fa-user"></i><span class="hide-menu"> Thêm Người Dùng </span></a></li>
+                                </ul>
+                            </li>
+
                             @endif
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ asset('admin/order') }}" aria-expanded="false"><i class="fas fa-clipboard-list"></i><span class="hide-menu">Danh Sách Đơn Hàng</span></a></li>
                             <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-account-key"></i><span class="hide-menu"> Đăng Nhập / Đăng Ký </span></a>
