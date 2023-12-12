@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('customer_email')->nullable();
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
-            $table->string('cus_messenger')->nullable();
             $table->string('price')->nullable();
             $table->string('status_order')->nullable();
             $table->string('customer_id')->nullable();
