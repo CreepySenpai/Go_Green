@@ -23,7 +23,7 @@ class AddCategoryRequest extends FormRequest
     {
         // Check cate_name value receive in form is unique
         return [
-            'cate_name' => 'unique:Categories,cate_name'
+            'cate_name' => 'unique:vp_categories,cate_name'
         ];
     }
 
