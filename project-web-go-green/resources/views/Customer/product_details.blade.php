@@ -55,7 +55,7 @@
 					</div>
 					<div class="col-lg-5 ps-lg-5">
 						<h2 class="section-title mb-4">{{$product->product_name}}</h2>
-						<p>{{$product->product_desc}}</p>
+						<p>{{$product->product_desc}} </p>
 
 						{{-- <ul class="list-unstyled custom-list my-4">
 							<li>Giao hàng nhanh</li>
