@@ -88,8 +88,6 @@ Route::group(['prefix' => 'AdRegister'], function() {
 });
 
 
-// Route::get('/logout', [HomeController::class, 'getLogout']);
-
 // Group Route In Folder Admin
 Route::group(['namespace' => 'Admin'], function() {
 
@@ -98,6 +96,8 @@ Route::group(['namespace' => 'Admin'], function() {
     Route::group(['prefix' => 'admin'], function(){
 
         Route::get('/home', [HomeController::class, 'getHome']);
+
+        Route::get('/logout', [HomeController::class, 'getLogout']);
 
         Route::group(['prefix' => 'category'], function(){
             Route::get('/', [CategoryController::class, 'getCategory']);

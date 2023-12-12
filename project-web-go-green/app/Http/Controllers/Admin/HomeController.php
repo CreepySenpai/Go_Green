@@ -26,6 +26,6 @@ class HomeController extends Controller
 
     public function getLogOut(){
         Auth::logout();
-        return redirect('/login');
+        return redirect('/AdLogin');
     }
 }

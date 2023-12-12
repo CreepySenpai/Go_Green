@@ -129,6 +129,7 @@
                         <!-- ============================================================== -->
                         <!-- create new -->
                         <!-- ============================================================== -->
+                        @if(Auth::user()->role_type == 1)
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                              <span class="d-none d-md-block"> Thêm Mới <i class="fa fa-angle-down"></i></span>
@@ -139,14 +140,11 @@
                                 <a class="dropdown-item" href="{{ asset('admin/category/add') }}">Danh Mục</a>
                             </div>
                         </li>
+                        @endif
                         <!-- ============================================================== -->
                         <!-- Search -->
                         <!-- ============================================================== -->
-                        <li class="nav-item search-box"> <a class="nav-link waves-effect waves-dark" href="javascript:void(0)"><i class="ti-search"></i></a>
-                            <form class="app-search position-absolute">
-                                <input type="text" class="form-control" placeholder="Search &amp; enter"> <a class="srh-btn"><i class="ti-close"></i></a>
-                            </form>
-                        </li>
+
                     </ul>
                     <!-- ============================================================== -->
                     <!-- Right side toggle and nav items -->
@@ -210,7 +208,7 @@
                                 <a class="dropdown-item" href="javascript:void(0)"><i class="ti-settings m-r-5 m-l-5"></i> Account Setting</a>
                                 <div class="dropdown-divider"></div> -->
                                 <p class="dropdown-item"> Xin Chào <span style="color: #da542e; font-size: 14px; font-family: 'Nunito Sans',sans-serif; font-weight: bold;">{{ Auth::user()->user_name }}</span> </p>
-                                <a class="dropdown-item" href="{{ asset('/logout') }}"><i class="fa fa-power-off m-r-5 m-l-5"></i> Đăng Xuất </a>
+                                <a class="dropdown-item" href="{{ asset('/admin/logout') }}"><i class="fa fa-power-off m-r-5 m-l-5"></i> Đăng Xuất </a>
                                 <!-- <div class="dropdown-divider"></div>
                                 <div class="p-l-30 p-10"><a href="javascript:void(0)" class="btn btn-sm btn-success btn-rounded">View Profile</a></div> -->
                             </div>
@@ -235,6 +233,8 @@
                     <nav class="sidebar-nav">
                         <ul id="sidebarnav" class="p-t-30">
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ asset('admin/home') }}" aria-expanded="false"><i class="fas fa-home"></i><span class="hide-menu">Trang Quản Trị</span></a></li>
+
+                            @if(Auth::user()->role_type == 1)
                             <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-box-open"></i><span class="hide-menu"> Sản Phẩm </span></a>
                                 <ul aria-expanded="false" class="collapse  first-level">
                                     <li class="sidebar-item"><a href="{{ asset('admin/product') }}" class="sidebar-link"><i class="fas fa-boxes"></i><span class="hide-menu"> Danh Sách Sản Phẩm </span></a></li>
@@ -247,12 +247,14 @@
                                     <li class="sidebar-item"><a href="{{ asset('admin/category/add') }}" class="sidebar-link"><i class="fas fa-cube"></i><span class="hide-menu"> Thêm Danh Mục </span></a></li>
                                 </ul>
                             </li>
+
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ asset('admin/user') }}" aria-expanded="false"><i class="fas fa-user-circle"></i><span class="hide-menu">Danh Sách Người Dùng</span></a></li>
+                            @endif
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ asset('admin/order') }}" aria-expanded="false"><i class="fas fa-clipboard-list"></i><span class="hide-menu">Danh Sách Đơn Hàng</span></a></li>
                             <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-account-key"></i><span class="hide-menu"> Đăng Nhập / Đăng Ký </span></a>
                                 <ul aria-expanded="false" class="collapse  first-level">
-                                    <li class="sidebar-item"><a href="{{ asset('/login') }}" class="sidebar-link"><i class="fas fa-user"></i><span class="hide-menu"> Đăng Nhập </span></a></li>
-                                    <li class="sidebar-item"><a href="{{ asset('/register') }}" class="sidebar-link"><i class="fas fa-user-plus"></i><span class="hide-menu"> Đăng Ký </span></a></li>
+                                    <li class="sidebar-item"><a href="{{ asset('/AdLogin') }}" class="sidebar-link"><i class="fas fa-user"></i><span class="hide-menu"> Đăng Nhập </span></a></li>
+                                    <li class="sidebar-item"><a href="{{ asset('/AdRegister') }}" class="sidebar-link"><i class="fas fa-user-plus"></i><span class="hide-menu"> Đăng Ký </span></a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -269,55 +271,9 @@
         @yield('main')
 
         </div>
-
-
-
-
         <script>
             $('#zero_config').DataTable();
         </script>
-
-        <script>
-            //***********************************//
-            // For select 2
-            //***********************************//
-            $(".select2").select2();
-
-            /*colorpicker*/
-            $('.demo').each(function() {
-            //
-            // Dear reader, it's actually very easy to initialize MiniColors. For example:
-            //
-            //  $(selector).minicolors();
-            //
-            // The way I've done it below is just for the demo, so don't get confused
-            // by it. Also, data- attributes aren't supported at this time...they're
-            // only used for this demo.
-            //
-            $(this).minicolors({
-                    control: $(this).attr('data-control') || 'hue',
-                    position: $(this).attr('data-position') || 'bottom left',
-
-                    change: function(value, opacity) {
-                        if (!value) return;
-                        if (opacity) value += ', ' + opacity;
-                        if (typeof console === 'object') {
-                            console.log(value);
-                        }
-                    },
-                    theme: 'bootstrap'
-                });
-
-            });
-            /*datwpicker*/
-            jQuery('.mydatepicker').datepicker();
-            jQuery('#datepicker-autoclose').datepicker({
-                autoclose: true,
-                todayHighlight: true
-            });
-
-
-    </script>
 
     <!-- Editor -->
     <script>
