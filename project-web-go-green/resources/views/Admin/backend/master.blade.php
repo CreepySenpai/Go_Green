@@ -98,6 +98,7 @@
                         <span class="logo-text">
                              <!-- dark Logo text -->
                              <img src="{{ asset('assets/images/logo-text.png') }}" alt="homepage" class="light-logo" />
+                             {{-- <h2>Go!Green</h2> --}}
 
                         </span>
                         <!-- Logo icon -->
