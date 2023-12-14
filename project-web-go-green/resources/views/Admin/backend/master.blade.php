@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 
@@ -130,7 +132,7 @@
                         <!-- ============================================================== -->
                         <!-- create new -->
                         <!-- ============================================================== -->
-                        @if(Auth::user()->role_type == 1)
+                        @if(Auth::user()->role_type == UserType::ADMIN)
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                              <span class="d-none d-md-block"> Thêm Mới <i class="fa fa-angle-down"></i></span>
@@ -235,7 +237,7 @@
                         <ul id="sidebarnav" class="p-t-30">
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ asset('admin/home') }}" aria-expanded="false"><i class="fas fa-home"></i><span class="hide-menu">Trang Quản Trị</span></a></li>
 
-                            @if(Auth::user()->role_type == 1)
+                            @if(Auth::user()->role_type == UserType::ADMIN)
                             <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-box-open"></i><span class="hide-menu"> Sản Phẩm </span></a>
                                 <ul aria-expanded="false" class="collapse  first-level">
                                     <li class="sidebar-item"><a href="{{ asset('admin/product') }}" class="sidebar-link"><i class="fas fa-boxes"></i><span class="hide-menu"> Danh Sách Sản Phẩm </span></a></li>

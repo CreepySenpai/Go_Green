@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\UserType;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AddUserRequest;
 use App\Models\Role;
@@ -52,7 +53,6 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->password = $request->password;
         $user->role_type = $request->role;
-
         $user->save();
 
         return redirect('admin/user')->with(['add_user_success' => 'Thêm Người Dùng Thành Công!!!']);
