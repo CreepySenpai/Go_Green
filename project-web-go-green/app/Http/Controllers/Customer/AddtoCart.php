@@ -63,26 +63,6 @@ class AddtoCart extends Controller
       return view('Customer.CheckOrder', compact('order'));
     }
     
-
-    // public function add_cart(Request $request, $id) {
-
-    //     $info_user = cus_account::where('id', '=', Session::get('LoginID'))->first();
-
-    //     // dd($info_user);
-    //     $product=Product::find($id);
-    //     // dd($product);
-    //     $cart = new cart;
-    //     $cart->customer_email=$info_user->cus_email;
-    //     $cart->customer_id=$info_user->id;
-    //     $cart->product_id=$product->product_id;
-    //     $cart->product_title=$product->product_name;
-    //     $cart->price=$product->product_price;
-    //     $cart->image=$product->product_image;
-        
-    //     $cart->save();
-    //     //return view('Customer.Cart');
-    // }
-
     public function add_temp_cart(Request $request, $id) {
 
       $info_user = cus_account::where('id', '=', Session::get('LoginID'))->first();
@@ -98,7 +78,15 @@ class AddtoCart extends Controller
           $existingCartItem->temp_quantity++;
           $existingCartItem->total_price = $product->product_price * $existingCartItem->temp_quantity;
           $existingCartItem->save();
-      } else {
+
+          if ($existingCartItem->temp_quantity > $product->product_count) {
+            # code...
+            $existingCartItem->temp_quantity--;
+            $existingCartItem->total_price = $product->product_price * $existingCartItem->temp_quantity;
+            $existingCartItem->save();
+            return redirect(route(name: 'cart'))->with('error', 'Số lượng không hợp lệ');
+          }
+      }else {
           // If the product doesn't exist, create a new entry in the temporary cart
           $temp_cart = new temp_cart;
           $temp_cart->product_title = $product->product_name;
@@ -136,7 +124,7 @@ class AddtoCart extends Controller
           }
       
           // Check if the requested quantity is valid
-          $newQuantity = $request->input('new_quantity');
+          $newQuantity = $request->input('new_quantity'. $cartItem->product_id);
           if (!$newQuantity || $newQuantity < 1 || $newQuantity > $productCount->product_count) {
               return redirect(route(name: 'cart'))->with('error', 'Số lượng không hợp lệ');
           }
@@ -197,8 +185,6 @@ class AddtoCart extends Controller
 
       $cart->save();
       
-
-
       $temp_cart = temp_cart::where('customer_id', '=', $id_cus)->delete();
 
       return redirect(route(name: 'CheckOrder.post'));

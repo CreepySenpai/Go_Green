@@ -77,7 +77,7 @@
                               <div class="input-group-prepend">
                                 <button class="btn btn-outline-black decrease" type="button">&minus;</button>
                               </div>
-                              <input type="text" name="new_quantity" class="form-control text-center quantity-amount" value="{{$temp_cart->temp_quantity}}" min="1" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                              <input type="text" name="new_quantity{{ $temp_cart->product_id }}" class="form-control text-center quantity-amount" value="{{$temp_cart->temp_quantity}}" min="1" aria-label="Example text with button addon" aria-describedby="button-addon1">
                               <div class="input-group-append">
                                 <button class="btn btn-outline-black increase" type="button">&plus;</button>
                               </div>

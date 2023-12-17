@@ -55,7 +55,6 @@
 					</div>
 					<div class="col-lg-5 ps-lg-5">
 						<h2 class="section-title mb-4">{{$product->product_name}}</h2>
-						<p><?php echo str_replace('"', '', $product->product_desc); ?></p>
 
 						{{-- <ul class="list-unstyled custom-list my-4">
 							<li>Giao hàng nhanh</li>
@@ -69,6 +68,7 @@
 							<input type="submit" class="btn" value="Thêm vào giỏ hàng">
 						</form>
 						{{-- <p><a herf="{{ url('Cart') }}" class="btn">Thêm vào giỏ hàng</a></p> --}}
+						<p><?php echo str_replace('"', '', $product->product_desc); ?></p>
 					</div>
 				</div>
 			</div>
