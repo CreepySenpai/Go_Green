@@ -85,24 +85,33 @@ class AddtoCart extends Controller
 
     public function add_temp_cart(Request $request, $id) {
 
-        $info_user = cus_account::where('id', '=', Session::get('LoginID'))->first();
-        //dd($info_cus);
-        $product=Product::find($id);
-
-        $temp_cart = new temp_cart;
-        $temp_cart->product_title=$product->product_name;
-        $temp_cart->price=$product->product_price;
-        $temp_cart->image=$product->product_image;
-        $temp_cart->temp_quantity=1;
-        // dd($temp_cart->temp_quantity);
-        $temp_cart->total_price=$product->product_price * $temp_cart->temp_quantity;
-        // $temp_cart->total_price=$product->
-        $temp_cart->product_id=$product->product_id;
-        $temp_cart->customer_id=$info_user->id;
-
-        //save db
-        $temp_cart->save();
-
+      $info_user = cus_account::where('id', '=', Session::get('LoginID'))->first();
+      $cus_id = $info_user->id;
+      $temp_carts = temp_cart::where('customer_id', '=', $cus_id)->get();
+      $product = Product::find($id);
+      
+      // Check if the product already exists in the temporary cart
+      $existingCartItem = $temp_carts->where('product_id', $id)->first();
+      
+      if ($existingCartItem) {
+          // If the product already exists, increment the quantity
+          $existingCartItem->temp_quantity++;
+          $existingCartItem->total_price = $product->product_price * $existingCartItem->temp_quantity;
+          $existingCartItem->save();
+      } else {
+          // If the product doesn't exist, create a new entry in the temporary cart
+          $temp_cart = new temp_cart;
+          $temp_cart->product_title = $product->product_name;
+          $temp_cart->price = $product->product_price;
+          $temp_cart->image = $product->product_image;
+          $temp_cart->temp_quantity = 1;
+          $temp_cart->total_price = $product->product_price * $temp_cart->temp_quantity;
+          $temp_cart->product_id = $product->product_id;
+          $temp_cart->customer_id = $info_user->id;
+      
+          // Save to the database
+          $temp_cart->save();
+      }
         return redirect(route(name: 'cart'));
     }
 
@@ -112,43 +121,39 @@ class AddtoCart extends Controller
       $info_user = cus_account::where('id', '=', Session::get('LoginID'))->first();
       $id_cus = $info_user->id;
       $temp_cart = temp_cart::where('customer_id', '=', $id_cus)->get();
-  
+      
       $productCounts = [];
-  
+      
       foreach ($temp_cart as $cartItem) {
           $temp_product_id = $cartItem->product_id;
-  
-          // Fetch the specific cart item using its ID
-          $temp_cart_item = temp_cart::find($cartItem->id);
-  
+      
           // Fetch the corresponding product count
           $productCount = Product::where('product_id', '=', $temp_product_id)->first();
-  
+      
           // Check if the product count exists before accessing properties
           if (!$productCount) {
               return redirect(route(name: 'cart'))->with('error', 'Không tìm thấy thông tin sản phẩm');
           }
-  
-          // Store the product count in the array
-          $productCounts[$temp_product_id] = $productCount->product_count;
-          
-
-          // Update the quantity in the cart item
-          $temp_cart_item->temp_quantity = $request->new_quantity;
-  
-          if ($request->new_quantity < 1 || $request->new_quantity > $productCounts[$temp_product_id]) {
+      
+          // Check if the requested quantity is valid
+          $newQuantity = $request->input('new_quantity');
+          if (!$newQuantity || $newQuantity < 1 || $newQuantity > $productCount->product_count) {
               return redirect(route(name: 'cart'))->with('error', 'Số lượng không hợp lệ');
           }
-  
+      
+          // Store the product count in the array
+          $productCounts[$temp_product_id] = $productCount->product_count;
+      
+          // Update the quantity in the cart item
+          $cartItem->temp_quantity = $newQuantity;
+      
           // Update the total price in the cart item
-          $temp_cart_item->total_price = $request->new_quantity * $temp_cart_item->price;
-  
+          $cartItem->total_price = $newQuantity * $cartItem->price;
+      
           // Save the changes to the cart item
-          $temp_cart_item->save();
+          $cartItem->save();
       }
-
-
-
+  
         return redirect(route(name: 'cart'));
     }
 
