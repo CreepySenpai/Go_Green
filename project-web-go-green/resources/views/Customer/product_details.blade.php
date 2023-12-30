@@ -107,14 +107,14 @@
     <div class="panel-body">
     <!-- Newsfeed Content -->
     <!--===================================================-->
-	@foreach ($cmt as $cmt)
+	@foreach ($cmt as $cmts)
 	<div class="media-block">
 		<a class="media-left" href="#"><img class="img-circle img-sm" alt="Profile Picture" src="https://bootdey.com/img/Content/avatar/avatar1.png"></a>
 		<div class="media-body">
 		  <div class="mar-btm">
-			<a href="#" class="btn-link text-semibold media-heading box-inline">{{$cmt->com_name}}</a>
+			<a href="#" class="btn-link text-semibold media-heading box-inline">{{$cmts->com_name}}</a>
 		  </div>
-		  <p>{{$cmt->com_content}}</p>
+		  <p>{{$cmts->com_content}}</p>
 		  <div class="pad-ver">
 			<div class="btn-group">
 			  <a class="btn btn-sm btn-default btn-hover-success" href="#"><i class="fa fa-thumbs-up"></i></a>
@@ -128,8 +128,10 @@
 	  </div>
 	@endforeach
 
+	{{ $cmt->links('pagination::bootstrap-5') }}
     <!--===================================================-->
     <!-- End Newsfeed Content -->
+
   </div>
 </div>
 </div>
