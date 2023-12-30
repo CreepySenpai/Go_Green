@@ -16,6 +16,7 @@ use App\Http\Controllers\FrontController;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\cus_account;
+use App\Models\Comment;
 use App\Http\Controllers\Admin\ProductController;
 
 /*
@@ -150,14 +151,14 @@ Route::group(['namespace' => 'Customer'], function() {
 
     //product_list route
     Route::get('/shoplist/{cate_slug}', [ShopController::class, 'filterByCategory']);
-
-    //product_details route
     Route::get('/product_details/{product_id}', [ShopController::class, 'product_details']);
+    // Route::get('/product_details/{product_id}', [ShopController::class, 'show_cmt']);
 
+   
     //Login and logout route
     Route::get('/CusLogin', [SignInUp::class, 'login'])->name(name: 'CusLogin')->middleware('alreadyLoggedIn');
     Route::post('/CusLogin', [SignInUp::class, 'postCusLogin'])->name(name: 'CusLogin.post');
-    Route::get('/logout', [SignInUp::class, 'Logout']);
+    Route::get('/logout', [SignInUp::class, 'Logout'])->name('logout');
     //register
     Route::get('/CusRegister', [SignInUp::class, 'register'])->name(name: 'CusRegister')->middleware('alreadyLoggedIn');
     Route::post('/CusRegister', [SignInUp::class, 'postCusRegister'])->name(name: 'CusRegister.post');
@@ -168,6 +169,10 @@ Route::group(['namespace' => 'Customer'], function() {
     Route::get('/remove_cart/{id}', [AddtoCart::class, 'Remove_temp_cart']);
     Route::post('/update-cart', [AddtoCart::class, 'update_temp_cart'])->name(name: 'update-cart.post');
 
+    //Comments product
+    Route::post('/cmt/{product_id}', [ShopController::class, 'product_cmt'])->middleware('isLoggedIn');
+
+
     //check out  route
     Route::get('/checkout', [AddtoCart::class, 'checkoutPage'])->name(name: 'checkout');
 
@@ -175,4 +180,6 @@ Route::group(['namespace' => 'Customer'], function() {
     Route::get('/CheckOrder', [AddtoCart::class, 'OrderPage'])->middleware('isLoggedIn');
     Route::post('/CheckOrder', [AddtoCart::class, 'add_order'])->name(name: 'CheckOrder.post');
     Route::get('/remove_order/{id}', [AddtoCart::class, 'Remove_cart']);
+
+   
 });

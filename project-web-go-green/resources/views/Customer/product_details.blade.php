@@ -62,11 +62,16 @@
 							<li>Giá cả hợp lý</li>
 							<li>Chung tay vì trái đất xanh</li>
 						</ul> --}}
+						@if ($product->product_count === 0)
+							<h2 style="color: #3b5d50;">Sản phẩm đã hết hàng</h2>
+						@else
 						<form action="{{ url('Cart', $product->product_id) }}" method="post">
 							@csrf
 							{{-- <input type="number" name="quantiny" value="1" min="1"> --}}
 							<input type="submit" class="btn" value="Thêm vào giỏ hàng">
 						</form>
+						@endif
+		
 						{{-- <p><a herf="{{ url('Cart') }}" class="btn">Thêm vào giỏ hàng</a></p> --}}
 						<p><?php echo str_replace('"', '', $product->product_desc); ?></p>
 					</div>
@@ -78,39 +83,51 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <div class="container bootdey">
 <div class="col-md-12 bootstrap snippets">
+{{-- write cmt --}}
 <div class="panel">
   <div class="panel-body">
-    <textarea class="form-control" rows="2"></textarea>
-    <div class="mar-top clearfix">
-      <button class="btn btn-sm btn-primary pull-right" type="submit"><i class="fa fa-pencil fa-fw"></i> Share</button>
-      <a class="btn btn-trans btn-icon fa fa-video-camera add-tooltip" href="#"></a>
-      <a class="btn btn-trans btn-icon fa fa-camera add-tooltip" href="#"></a>
-      {{-- <a class="btn btn-trans btn-icon fa fa-file add-tooltip" href="#"></a> --}}
-    </div>
+	<form action="{{ url('cmt', $product->product_id) }}" method="post">
+		@csrf
+		<textarea name="cmt_area" class="form-control" rows="2"></textarea>
+		@if(session('error'))
+		<span class= "text-danger" style="color: #FF3030;">{{ session('error') }}</span>
+		@endif
+		<div class="mar-top clearfix">
+		  {{-- <i class="fa fa-pencil fa-fw" ><input type="submit" class="btn btn-sm btn-primary pull-right" value="Share"></i> --}}
+		  <button class="btn btn-sm btn-primary pull-right" type="submit"><i class="fa fa-pencil fa-fw"></i> Share</button>
+		  <a class="btn btn-trans btn-icon fa fa-video-camera add-tooltip" href="#"></a>
+		  <a class="btn btn-trans btn-icon fa fa-camera add-tooltip" href="#"></a>
+		  {{-- <a class="btn btn-trans btn-icon fa fa-file add-tooltip" href="#"></a> --}}
+		</div>
+	</form>
   </div>
 </div>
+{{-- show cmt --}}
 <div class="panel">
     <div class="panel-body">
     <!-- Newsfeed Content -->
     <!--===================================================-->
-    <div class="media-block">
-      <a class="media-left" href="#"><img class="img-circle img-sm" alt="Profile Picture" src="https://bootdey.com/img/Content/avatar/avatar1.png"></a>
-      <div class="media-body">
-        <div class="mar-btm">
-          <a href="#" class="btn-link text-semibold media-heading box-inline"> Trần Quốc Bảo</a>
-        </div>
-        <p>consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>
-        <div class="pad-ver">
-          <div class="btn-group">
-            <a class="btn btn-sm btn-default btn-hover-success" href="#"><i class="fa fa-thumbs-up"></i></a>
-            <a class="btn btn-sm btn-default btn-hover-danger" href="#"><i class="fa fa-thumbs-down"></i></a>
-          </div>
-          <a class="btn btn-sm btn-default btn-hover-primary" href="#">Comment</a>
-        </div>
-        <hr>
-    <!-- End Newsfeed Content -->
-      </div>
-    </div>
+	@foreach ($cmt as $cmt)
+	<div class="media-block">
+		<a class="media-left" href="#"><img class="img-circle img-sm" alt="Profile Picture" src="https://bootdey.com/img/Content/avatar/avatar1.png"></a>
+		<div class="media-body">
+		  <div class="mar-btm">
+			<a href="#" class="btn-link text-semibold media-heading box-inline">{{$cmt->com_name}}</a>
+		  </div>
+		  <p>{{$cmt->com_content}}</p>
+		  <div class="pad-ver">
+			<div class="btn-group">
+			  <a class="btn btn-sm btn-default btn-hover-success" href="#"><i class="fa fa-thumbs-up"></i></a>
+			  <a class="btn btn-sm btn-default btn-hover-danger" href="#"><i class="fa fa-thumbs-down"></i></a>
+			</div>
+			<a class="btn btn-sm btn-default btn-hover-primary" href="#">Comment</a>
+		  </div>
+		  <hr>
+	  <!-- End Newsfeed Content -->
+		</div>
+	  </div>
+	@endforeach
+
     <!--===================================================-->
     <!-- End Newsfeed Content -->
   </div>

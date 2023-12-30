@@ -16,26 +16,6 @@ class SignInUp extends Controller
     {
         return view('Customer.CusLogin');
     }
-    // public function postCusLogin(Request $data)
-    // {
-    //     dd($data->all());
-
-    //     $credentials = [
-    //         'email' => $data->cus_email,
-    //         'password' => $data->cus_password,
-    //     ];    
-
-    //     if (Hash::check('plain-text', $data->cus_password)) {
-    //         // The passwords match...
-    //     }
-
-    //     if (Auth::attempt($credentials)) {
-    //         // Authentication passed
-    //         return redirect()->intended(route(name: 'shop'));
-    //     } else {
-    //         return redirect(route(name:'CusLogin'))->with('error', 'Đăng nhập không thành công. Vui lòng kiểm tra lại thông tin đăng nhập.');
-    //     }
-    // }
 
     public function postCusLogin(Request $request)
     {

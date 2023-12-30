@@ -65,8 +65,12 @@
                           <td>{{$order->phone}}</td>
                           <td>{{$order->address}}</td>
                           <td>{{$order->price}} VND</td>
-						  <td>{{$order->status_order}}</td>
+						              <td>{{$order->status_order}}</td>
+                          @if ($order->status_order === "Đang xác nhận")
                           <td><a href="{{url('remove_order', $order->id)}}" class="btn btn-black btn-sm" onclick="return confirm('Bạn có muốn hủy đơn hàng này không?')">X</a></td>
+                          @else
+                          <td>Không thể hủy đơn</td>
+                          @endif
                         </tr>
 						@endforeach
                       </tbody>

@@ -21,7 +21,7 @@
 
 					<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
 						@if(session('LoginID'))
-							<li><a class="nav-link" href="logout"><img src="{{ asset('front-assets/images/icons8-logout-32.png') }}"></a></li>
+							<li><a class="nav-link" href="{{ url('logout') }}"><img src="{{ asset('front-assets/images/icons8-logout-32.png') }}"></a></li>
 						@else
 							<li><a class="nav-link" href="{{ url('CusLogin') }}"><img src="{{ asset('front-assets/images/user.svg') }}"></a></li>
 						@endif
