@@ -88,7 +88,10 @@
                                             {{ $order->address }}
                                         </td>
                                         <td>
-                                            {{ $order->product_list }}
+                                            @foreach ($details[$order->order_code] as $detail)
+                                            <p>- {{$detail->quantity}} <span>x</span> {{$detail->product_title}}.</p>
+                                            @endforeach
+                                    
                                         </td>
                                         <td>
                                             {{ $order->price}}
