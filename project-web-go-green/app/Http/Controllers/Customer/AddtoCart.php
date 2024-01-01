@@ -162,6 +162,7 @@ class AddtoCart extends Controller
       $order_detail = new order_detail;
       $order_detail->order_code = $uniqid;
       $order_detail->product_title = $temp_cart->product_title;
+      $order_detail->product_id = $temp_cart->product_id;
       $order_detail->quantity = $temp_cart->temp_quantity;
       $order_detail->total_price = $temp_cart->total_price;
       $order_detail -> save();
