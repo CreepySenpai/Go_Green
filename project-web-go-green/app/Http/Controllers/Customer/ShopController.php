@@ -50,7 +50,7 @@ class ShopController extends Controller
         
         // Check if the product is found before trying to paginate comments
         if ($product) {
-            $cmt = Comment::where('com_product', $product_id)->paginate(5);
+            $cmt = Comment::where('com_product', $product_id)->orderBy('updated_at', 'desc')->paginate(5);
             return view('Customer.product_details', compact('product', 'cmt'));
         } else {
             // Handle the case where the product is not found
