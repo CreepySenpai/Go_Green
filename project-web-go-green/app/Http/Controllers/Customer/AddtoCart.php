@@ -29,18 +29,18 @@ class AddtoCart extends Controller
           // Loop through each temp_cart record to fetch product information
         foreach ($temp_cart as $cartItem) {
           $temp_product_id = $cartItem->product_id;
-  
+
           // Count the number of products for each product ID
           $productCount = Product::where('product_id', '=', $temp_product_id)->first();
         //   dd($productCount);
-  
+
           // Store the product count in the array
           $productCounts[$temp_product_id] = $productCount->product_count;
         //   dd($productCounts[$temp_product_id]);
       }
 
         return view('Customer.Cart', compact('temp_cart', 'productCounts'));
-       
+
     }
 
     public function checkoutPage() {
@@ -62,17 +62,17 @@ class AddtoCart extends Controller
 
       return view('Customer.CheckOrder', compact('order'));
     }
-    
+
     public function add_temp_cart(Request $request, $id) {
 
       $info_user = cus_account::where('id', '=', Session::get('LoginID'))->first();
       $cus_id = $info_user->id;
       $temp_carts = temp_cart::where('customer_id', '=', $cus_id)->get();
       $product = Product::find($id);
-      
+
       // Check if the product already exists in the temporary cart
       $existingCartItem = $temp_carts->where('product_id', $id)->first();
-      
+
       if ($existingCartItem) {
           // If the product already exists, increment the quantity
           $existingCartItem->temp_quantity++;
@@ -96,7 +96,7 @@ class AddtoCart extends Controller
           $temp_cart->total_price = $product->product_price * $temp_cart->temp_quantity;
           $temp_cart->product_id = $product->product_id;
           $temp_cart->customer_id = $info_user->id;
-      
+
           // Save to the database
           $temp_cart->save();
       }
@@ -109,39 +109,39 @@ class AddtoCart extends Controller
       $info_user = cus_account::where('id', '=', Session::get('LoginID'))->first();
       $id_cus = $info_user->id;
       $temp_cart = temp_cart::where('customer_id', '=', $id_cus)->get();
-      
+
       $productCounts = [];
-      
+
       foreach ($temp_cart as $cartItem) {
           $temp_product_id = $cartItem->product_id;
-      
+
           // Fetch the corresponding product count
           $productCount = Product::where('product_id', '=', $temp_product_id)->first();
-      
+
           // Check if the product count exists before accessing properties
           if (!$productCount) {
               return redirect(route(name: 'cart'))->with('error', 'Không tìm thấy thông tin sản phẩm');
           }
-      
+
           // Check if the requested quantity is valid
           $newQuantity = $request->input('new_quantity'. $cartItem->product_id);
           if (!$newQuantity || $newQuantity < 1 || $newQuantity > $productCount->product_count) {
               return redirect(route(name: 'cart'))->with('error', 'Số lượng không hợp lệ');
           }
-      
+
           // Store the product count in the array
           $productCounts[$temp_product_id] = $productCount->product_count;
-      
+
           // Update the quantity in the cart item
           $cartItem->temp_quantity = $newQuantity;
-      
+
           // Update the total price in the cart item
           $cartItem->total_price = $newQuantity * $cartItem->price;
-      
+
           // Save the changes to the cart item
           $cartItem->save();
       }
-  
+
         return redirect(route(name: 'cart'));
     }
 
@@ -157,6 +157,8 @@ class AddtoCart extends Controller
     $id_cus = $info_user->id;
     $temp_cart = temp_cart::where('customer_id', '=', $id_cus)->get();
     $totalcart = 0;
+
+
     foreach($temp_cart as $temp_cart) {
       $totalcart = $totalcart + $temp_cart->total_price;
       $order_detail = new order_detail;
@@ -167,6 +169,7 @@ class AddtoCart extends Controller
       $order_detail->total_price = $temp_cart->total_price;
       $order_detail -> save();
     }
+
     // dd($totalcart);
 
       $cart = new Cart;
@@ -185,12 +188,12 @@ class AddtoCart extends Controller
       $cart->status_order='Đang xác nhận';
 
       $cart->save();
-      
+
       $temp_cart = temp_cart::where('customer_id', '=', $id_cus)->delete();
 
       return redirect(route(name: 'CheckOrder.post'));
     }
-    
+
     public function Remove_cart($id) {
       $cart=Cart::find($id);
       $order_detail = order_detail::where('order_code', '=', $cart->order_code)->delete();
