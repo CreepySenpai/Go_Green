@@ -69,7 +69,7 @@
                                 </div>
                             </div>
 
-                            <!-- <div class="form-group row">
+                                    <!-- <div class="form-group row">
                                         <label class="col-md-3">Chọn Hình Ảnh</label>
                                         <div class="col-md-9">
                                             <div class="custom-file">

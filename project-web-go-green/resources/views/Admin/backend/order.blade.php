@@ -8,9 +8,6 @@
 <!-- Page wrapper  -->
 <!-- ============================================================== -->
 <div class="page-wrapper">
-    <!-- ============================================================== -->
-    <!-- Bread crumb and right sidebar toggle -->
-    <!-- ============================================================== -->
     <div class="page-breadcrumb">
         <div class="row">
             <div class="col-12 d-flex no-block align-items-center">
@@ -91,7 +88,7 @@
                                             @foreach ($details[$order->order_code] as $detail)
                                             <p>- {{$detail->quantity}} <span>x</span> {{$detail->product_title}}.</p>
                                             @endforeach
-                                    
+
                                         </td>
                                         <td>
                                             {{ $order->price}}
