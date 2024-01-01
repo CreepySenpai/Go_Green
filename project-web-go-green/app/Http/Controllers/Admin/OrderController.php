@@ -49,8 +49,8 @@ class OrderController extends Controller
             // Save the updated product count
             $product->save();
         }
-        dd($product);
+        // dd($product);
 
-        return redirect()->back()->with(['delete_order_success' => 'Xoá Đơn Hàng Thành Công!!!']);
+        return redirect()->back()->with(['delete_order_success' => 'Đơn Hàng đã giao cho bên vận chuyển!!!']);
     }
 }
