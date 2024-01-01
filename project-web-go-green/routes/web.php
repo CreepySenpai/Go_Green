@@ -138,7 +138,7 @@ Route::group(['namespace' => 'Admin'], function() {
         Route::group(['prefix' => 'order'], function(){
             Route::get('/', [OrderController::class, 'getOrder']);
             Route::get('/delete/{order_id}', [OrderController::class, 'getDeleteOrder']);
-            Route::get('/delivery/{id}', [OrderController::class, 'getDeliveryOrder']);
+            Route::get('/delivery-order/{order_id}', [OrderController::class, 'getDeliveryOrder'])->name('delivery.order');
         });
     });
 });

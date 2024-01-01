@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+
 
 class RegisterController extends Controller
 {
@@ -17,7 +19,8 @@ class RegisterController extends Controller
         $newUser = new User();
         $newUser->user_name = $request->username;
         $newUser->email = $request->email;
-        $newUser->password = bcrypt($request->password);
+        // $newUser->password = bcrypt($request->password);
+        $newUser->password = Hash::make($request->password);
         $newUser->role_type = 2;
 
         $status = $newUser->save();

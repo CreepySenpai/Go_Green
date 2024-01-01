@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\order_detail;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -29,10 +30,27 @@ class OrderController extends Controller
         Cart::destroy($order_id);
         return redirect()->back()->with(['delete_order_success' => 'Xoá Đơn Hàng Thành Công!!!']);
     }
-    // public function getDeliveryOrder($id){
-    //     $order = Cart::find($id);
-    //     $order->status_order = 'Đang giao hàng';
-    //     $order->save();
-    //     return redirect()->back()->with(['delivery_order_success' => 'Đã giao cho bên giao hàng Thành Công!!!']);
-    // }
+
+    public function getDeliveryOrder($order_id){
+
+        $order = Cart::find($order_id);
+        $order->status_order = 'Đang giao hàng';
+        $order->save();
+        
+        $order_detail = order_detail::where('order_code', '=', $order->order_code)->get();
+
+        foreach ($order_detail as $order_details) {
+            // Find the product
+            $product = Product::find($order_details->product_id);
+    
+            // Update product count
+            $product->product_count -= $order_details->quantity;
+    
+            // Save the updated product count
+            $product->save();
+        }
+        dd($product);
+
+        return redirect()->back()->with(['delete_order_success' => 'Xoá Đơn Hàng Thành Công!!!']);
+    }
 }
