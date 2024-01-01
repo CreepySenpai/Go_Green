@@ -20,7 +20,6 @@ class OrderController extends Controller
          // Get details for each order
             $code = $order->order_code;
             $details[$code] = order_detail::where('order_code', $code)->get();
-
         }
 
     // Pass both order list and order details to the view
@@ -30,4 +29,10 @@ class OrderController extends Controller
         Cart::destroy($order_id);
         return redirect()->back()->with(['delete_order_success' => 'Xoá Đơn Hàng Thành Công!!!']);
     }
+    // public function getDeliveryOrder($id){
+    //     $order = Cart::find($id);
+    //     $order->status_order = 'Đang giao hàng';
+    //     $order->save();
+    //     return redirect()->back()->with(['delivery_order_success' => 'Đã giao cho bên giao hàng Thành Công!!!']);
+    // }
 }
